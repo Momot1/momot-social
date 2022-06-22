@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const [errors, setErrors] = useState([]);
 
   const user = useSelector((state) => state.users.user);
-  const errors = useSelector((state) => state.users.errors);
 
   const dispatch = useDispatch();
-
-  console.log(errors);
-
-  // dispatch({ type: "login", payload: { test: "yo" } });
 
   function handleLogin(e) {
     e.preventDefault();
@@ -26,12 +23,16 @@ function Login() {
       body: JSON.stringify(formData),
     }).then((resp) => {
       if (resp.ok) {
-        resp.json().then((user) => dispatch({ type: "login", payload: user }));
+        resp.json().then((user) => {
+          dispatch({ type: "login", payload: user });
+        });
       } else {
-        resp.json().then((errors) => dispatch({ type: "addErrors", payload: errors }));
+        resp.json().then(setErrors);
       }
     });
   }
+
+  console.log(errors);
 
   function updateFormData(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,6 +40,7 @@ function Login() {
 
   return (
     <div>
+      {user ? <Redirect to="/" /> : null}
       <form onSubmit={handleLogin}>
         <div>
           <input name="username" value={formData.username} type="text" placeholder="Username/Email" onChange={updateFormData} />
@@ -47,8 +49,9 @@ function Login() {
           <input name="password" value={formData.password} type="password" placeholder="Password" onChange={updateFormData} />
         </div>
         <button type="submit">Login</button>
+        <br />
+        <Link to="/signup">Don't have an account? Create one</Link>
       </form>
-      {/* {errors.error.length < 1 ? null : <p>errors.error</p>} */}
     </div>
   );
 }

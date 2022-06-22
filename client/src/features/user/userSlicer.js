@@ -7,8 +7,7 @@ export default function usersReducer(state = initialState, action) {
       return { ...state, user: action.payload };
     case "logout":
       return { ...state, user: null };
-    case "addErrors":
-      return { ...state, errors: action.payload };
+
     default:
       return state;
   }
