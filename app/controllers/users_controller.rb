@@ -18,6 +18,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:first_name, :last_name, :password, :password_confirmation, :birthday, :email, :username)
+        params.permit(:first_name, :last_name, :password, :password_confirmation, :birthday, :email.downcase.gsub(/\s+/, ""), :username.downcase.gsub(/\s+/, ""))
     end
 end
