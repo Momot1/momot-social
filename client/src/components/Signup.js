@@ -17,6 +17,7 @@ function Signup() {
     first_name: "",
     last_name: "",
   });
+  const [errors, setErrors] = useState({ errors: [] });
 
   function updateFormData(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,12 +36,18 @@ function Signup() {
           history.push("/");
         });
       } else {
-        resp.json().then((errors) => console.log(errors));
+        resp.json().then((errors) => setErrors(errors));
       }
     });
   }
 
-  console.log(user);
+  console.log(errors);
+
+  const errorElements = errors.errors.map((error) => (
+    <div key={error} className="alert alert-danger form-font-size mx-auto">
+      - {error}
+    </div>
+  ));
 
   return (
     <div>
@@ -77,6 +84,7 @@ function Signup() {
         <br />
         <Link to="/login">Already have an account? Login</Link>
       </form>
+      {errors.errors.length > 0 ? errorElements : null}
     </div>
   );
 }

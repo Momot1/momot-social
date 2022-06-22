@@ -32,8 +32,6 @@ function Login() {
     });
   }
 
-  console.log(errors);
-
   function updateFormData(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
@@ -52,6 +50,7 @@ function Login() {
         <br />
         <Link to="/signup">Don't have an account? Create one</Link>
       </form>
+      {errors.error ? <div className="alert alert-danger form-font-size mx-auto">{errors.error}</div> : null}
     </div>
   );
 }
