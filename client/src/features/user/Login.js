@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import "./css/login.css";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -37,16 +38,40 @@ function Login() {
   }
 
   return (
-    <div>
+    <div id="login-div">
       {user ? <Redirect to="/" /> : null}
-      <form onSubmit={handleLogin}>
-        <div>
-          <input name="username" value={formData.username} type="text" placeholder="Username/Email" onChange={updateFormData} />
+      <form onSubmit={handleLogin} id="login-form">
+        <div className="input-group mb-3">
+          <span className="input-group-text" aria-label="username">
+            @
+          </span>
+          <input
+            name="username"
+            value={formData.username}
+            type="text"
+            placeholder="Username/Email"
+            onChange={updateFormData}
+            className="form-control"
+            aria-describedby="inputGroup-sizing-default"
+          />
         </div>
-        <div>
-          <input name="password" value={formData.password} type="password" placeholder="Password" onChange={updateFormData} />
+        <div className="input-group mb-3">
+          <span className="input-group-text" aira-label="password">
+            Password
+          </span>
+          <input
+            name="password"
+            value={formData.password}
+            type="password"
+            placeholder="Password"
+            onChange={updateFormData}
+            className="form-control"
+            aria-describedby="inputGroup-sizing-default"
+          />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="btn btn-lg btn-secondary">
+          Login
+        </button>
         <br />
         <Link to="/signup">Don't have an account? Create one</Link>
       </form>

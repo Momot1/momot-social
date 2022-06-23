@@ -2,13 +2,13 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../store";
-import Login from "./Login";
+import Login from "../features/user/Login";
 import Home from "./Home";
 import Navbar from "./Navbar";
-import Signup from "./Signup";
+import Signup from "../features/user/Signup";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Logout from "./Logout";
+import Logout from "../features/user/Logout";
 
 function App() {
   // const dispatch = useDispatch();
