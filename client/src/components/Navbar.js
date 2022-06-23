@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./css/navbar.css";
 
 function Navbar() {
   const user = useSelector((state) => state.users.user);
@@ -27,15 +28,15 @@ function Navbar() {
 
   return (
     <div className="nav">
-      <Link to="/" className="nav-link btn btn-secondary btn-lg">
+      <NavLink exact to="/" className="nav-link btn btn-secondary btn-lg me-4 nav-link">
         Home
-      </Link>
+      </NavLink>
       {user ? (
         loggedInDropdown()
       ) : (
-        <Link to="/login" className="nav-link btn btn-secondary btn-lg">
+        <NavLink to="/login" className="nav-link btn btn-secondary btn-lg me-4 nav-link">
           Login
-        </Link>
+        </NavLink>
       )}
     </div>
   );

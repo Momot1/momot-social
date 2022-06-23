@@ -16,21 +16,31 @@ function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
-    fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    }).then((resp) => {
-      if (resp.ok) {
-        resp.json().then((user) => {
-          dispatch({ type: "login", payload: user });
-        });
-      } else {
-        resp.json().then(setErrors);
-      }
-    });
+    const form = e.target;
+
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+
+    form.classList.add("was-validated");
+
+    if (form.checkValidity() === true) {
+      fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((user) => {
+            dispatch({ type: "login", payload: user });
+          });
+        } else {
+          resp.json().then(setErrors);
+        }
+      });
+    }
   }
 
   function updateFormData(e) {
@@ -40,7 +50,7 @@ function Login() {
   return (
     <div id="login-div">
       {user ? <Redirect to="/" /> : null}
-      <form onSubmit={handleLogin} id="login-form">
+      <form onSubmit={handleLogin} id="login-form" noValidate className="needs-validation">
         <div className="input-group mb-3">
           <span className="input-group-text" aria-label="username">
             @
@@ -49,10 +59,12 @@ function Login() {
             name="username"
             value={formData.username}
             type="text"
+            id="validationCustom01"
             placeholder="Username/Email"
             onChange={updateFormData}
             className="form-control"
-            aria-describedby="inputGroup-sizing-default"
+            aria-describedby="Username"
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -66,7 +78,8 @@ function Login() {
             placeholder="Password"
             onChange={updateFormData}
             className="form-control"
-            aria-describedby="inputGroup-sizing-default"
+            aria-describedby="Password"
+            required
           />
         </div>
         <button type="submit" className="btn btn-lg btn-secondary">
