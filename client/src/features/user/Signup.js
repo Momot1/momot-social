@@ -151,7 +151,9 @@ function Signup() {
             aria-describedby="password_confirmation"
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="btn btn-lg btn-secondary">
+          Sign Up
+        </button>
         <br />
         <Link to="/login">Already have an account? Login</Link>
       </form>
