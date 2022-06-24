@@ -9,6 +9,8 @@ import Signup from "../features/user/Signup";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Logout from "../features/user/Logout";
+import "./css/app.css";
+import ForgotPassword from "../features/user/ForgotPassword";
 
 function App() {
   // const dispatch = useDispatch();
@@ -38,6 +40,9 @@ function App() {
         </Route>
         <Route path="/logout">
           <Logout />
+        </Route>
+        <Route path="/forgot-password">
+          <ForgotPassword />
         </Route>
         <Route exact path="/">
           <Home />

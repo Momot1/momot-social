@@ -27,7 +27,7 @@ function Navbar() {
   }
 
   return (
-    <div className="nav">
+    <div className="nav" id="nav-bar">
       <NavLink exact to="/" className="nav-link btn btn-secondary btn-lg me-4 nav-link">
         Home
       </NavLink>

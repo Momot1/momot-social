@@ -26,20 +26,31 @@ function Signup() {
 
   function handleSignup(e) {
     e.preventDefault();
-    fetch("/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    }).then((resp) => {
-      if (resp.ok) {
-        resp.json().then((user) => {
-          dispatch({ type: "login", payload: user });
-          history.push("/");
-        });
-      } else {
-        resp.json().then((errors) => setErrors(errors));
-      }
-    });
+
+    const form = e.target;
+
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+
+    form.classList.add("was-validated");
+
+    if (form.checkValidity() === true) {
+      fetch("/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((user) => {
+            dispatch({ type: "login", payload: user });
+            history.push("/");
+          });
+        } else {
+          resp.json().then((errors) => setErrors(errors));
+        }
+      });
+    }
   }
 
   console.log(errors);
@@ -53,7 +64,7 @@ function Signup() {
   return (
     <div id="signup-div">
       {user ? <Redirect to="/" /> : null}
-      <form onSubmit={handleSignup} autoComplete="disabled">
+      <form onSubmit={handleSignup} autoComplete="disabled" className="needs-validation" noValidate>
         <div className="input-group mb-3">
           <span className="input-group-text" aria-label="first_name">
             First Name
@@ -66,6 +77,7 @@ function Signup() {
             type="text"
             className="form-control"
             aria-describedby="first_name"
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -80,6 +92,7 @@ function Signup() {
             type="text"
             className="form-control"
             aria-describedby="last_name"
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -107,6 +120,7 @@ function Signup() {
             type="email"
             className="form-control"
             aria-describedby="email"
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -121,6 +135,7 @@ function Signup() {
             type="text"
             className="form-control"
             aria-describedby="username"
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -135,6 +150,7 @@ function Signup() {
             type="password"
             className="form-control"
             aria-describedby="password"
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -149,6 +165,7 @@ function Signup() {
             type="password"
             className="form-control"
             aria-describedby="password_confirmation"
+            required
           />
         </div>
         <button type="submit" className="btn btn-lg btn-secondary">

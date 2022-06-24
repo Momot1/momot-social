@@ -86,6 +86,8 @@ function Login() {
           Login
         </button>
         <br />
+        <Link to="/forgot-password">Forgot your password?</Link>
+        <br />
         <Link to="/signup">Don't have an account? Create one</Link>
       </form>
       {errors.error ? <div className="alert alert-danger form-font-size mx-auto">{errors.error}</div> : null}
