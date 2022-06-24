@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import Logout from "../features/user/Logout";
 import "./css/app.css";
 import ForgotPassword from "../features/user/ForgotPassword";
+import Profile from "../features/user/Profile";
 
 function App() {
   // const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path="/forgot-password">
           <ForgotPassword />
+        </Route>
+        <Route path="/:username/profile">
+          <Profile />
         </Route>
         <Route exact path="/">
           <Home />

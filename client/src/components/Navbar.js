@@ -20,6 +20,8 @@ function Navbar() {
           Hello, {user.first_name}
         </button>
         <div className="dropdown-menu" aria-describedby="nav-bar-dropdown">
+          <Link to={`/${user.username}/profile`}>My Profile</Link>
+          <br />
           <Link to="/logout">Logout</Link>
         </div>
       </div>

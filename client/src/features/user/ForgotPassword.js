@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function ForgotPassword() {
+  const history = useHistory();
   const [email, setEmail] = useState("");
 
   function onPasswordReset(e) {
