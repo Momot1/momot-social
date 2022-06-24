@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   patch "/changepassword", to: "users#changepassword"
 
-  get "/confirmemail", to: "users#confirm_email"
+  get "/confirmemail/:confirm_token", to: "users#confirm_email"
 
   get '*path',
       to: 'fallback#index',

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :confirm_email]
 
     def create
         @user = User.create(user_params)
@@ -18,9 +18,11 @@ class UsersController < ApplicationController
     end
 
     def confirm_email
-        user = User.find_by_confirm_token(params[:id])
+        user = User.find_by(confirm_token: params[:confirm_token])
         if user
-            user.update(confirmed: true, confirm_token: nil)
+            user.confirmed = true
+            user.confirm_token = nil
+            user.save!(validate: false)
             render json: {message: "Please sign in to continue"}
         else
             render json: {error: "That user does not exist"}
