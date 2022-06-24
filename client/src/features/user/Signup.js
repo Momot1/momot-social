@@ -43,7 +43,7 @@ function Signup() {
       }).then((resp) => {
         if (resp.ok) {
           resp.json().then((user) => {
-            dispatch({ type: "login", payload: user });
+            // dispatch({ type: "login", payload: user });
             history.push("/");
           });
         } else {
@@ -52,8 +52,6 @@ function Signup() {
       });
     }
   }
-
-  console.log(errors);
 
   const errorElements = errors.errors.map((error) => (
     <div key={error} className="alert alert-danger form-font-size mx-auto">

@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
+    skip_before_action :authorized, only: [:create]
+
     def create
-        user = User.create(user_params)
-        if user.valid?
-            session[:user_id] = user.id
-            render json: user, status: :created
+        @user = User.create(user_params)
+        if @user.save
+            UserMailer.registration_confirmation(@user).deliver
+            render json: {message: "Please confirm your email address to continue"}, status: :created
         else
-            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+            render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
         end
         
     end
@@ -13,6 +15,16 @@ class UsersController < ApplicationController
     def show
         user = User.find(session[:user_id])
         render json: user
+    end
+
+    def confirm_email
+        user = User.find_by_confirm_token(params[:id])
+        if user
+            user.update(confirmed: true, confirm_token: nil)
+            render json: {message: "Please sign in to continue"}
+        else
+            render json: {error: "That user does not exist"}
+        end
     end
 
     def changepassword
