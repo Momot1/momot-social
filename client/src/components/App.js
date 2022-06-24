@@ -29,7 +29,6 @@ function App() {
     });
   }, []);
 
-  console.log("run twice");
   return (
     <BrowserRouter>
       <Navbar />
