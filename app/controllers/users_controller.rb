@@ -25,7 +25,7 @@ class UsersController < ApplicationController
             user.save!(validate: false)
             render json: {message: "Please sign in to continue"}
         else
-            render json: {error: "That user does not exist"}
+            render json: {error: "That user does not exist"}, status: :unauthorized
         end
     end
 

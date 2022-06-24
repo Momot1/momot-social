@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <p>Hi, <%= @user.first_name %>,</p>
+        <p>Thanks for registering! To confirm your registration click <a href='https://momot-social.herokuapp.com/<%= @user.confirm_token %>' >here</a>.</p>
+    </body>
+</html>
