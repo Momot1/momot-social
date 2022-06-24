@@ -13,6 +13,7 @@ import "./css/app.css";
 import ForgotPassword from "../features/user/ForgotPassword";
 import Profile from "../features/user/Profile";
 import ChangePassword from "../features/user/ChangePassword";
+import ConfirmAccount from "../features/user/ConfirmAccount";
 
 function App() {
   // const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <Route path="/:username/change-password">
           <ChangePassword />
+        </Route>
+        <Route path="/:confirm_token">
+          <ConfirmAccount />
         </Route>
         <Route exact path="/">
           <Home />
