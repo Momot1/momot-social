@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "/confirmemail/:confirm_token", to: "users#confirm_email"
 
+  post "/send_email_to_reset_password", to: "users#reset_password_send_email"
+
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }

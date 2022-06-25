@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :confirm_email]
+    skip_before_action :authorized, only: [:create, :confirm_email, :reset_password_send_email]
 
     def create
         @user = User.create(user_params)
@@ -27,6 +27,15 @@ class UsersController < ApplicationController
         else
             render json: {error: "That user does not exist"}, status: :unauthorized
         end
+    end
+
+    def reset_password_send_email
+        @user = User.find_by(email: params[:email])
+        if @user
+            @user.generate_password_reset_token
+            UserMailer.reset_password(@user).deliver
+        end
+        render json: {message: "A password reset link has been sent to #{params[:email]}."}
     end
 
     def changepassword

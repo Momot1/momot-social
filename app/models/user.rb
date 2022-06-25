@@ -6,6 +6,13 @@ class User < ApplicationRecord
     validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/ }
     validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
     
+
+    def generate_password_reset_token
+        if self.reset_password_token.blank?
+            self.reset_password_token = SecureRandom.urlsafe_base64.to_s
+        end
+    end
+
     private
 
     def confirmation_token

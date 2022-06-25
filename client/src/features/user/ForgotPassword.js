@@ -7,6 +7,16 @@ function ForgotPassword() {
 
   function onPasswordReset(e) {
     e.preventDefault();
+
+    fetch("/send_email_to_reset_password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    })
+      .then((resp) => resp.json())
+      .then(console.log);
   }
 
   return (

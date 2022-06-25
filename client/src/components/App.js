@@ -14,6 +14,7 @@ import ForgotPassword from "../features/user/ForgotPassword";
 import Profile from "../features/user/Profile";
 import ChangePassword from "../features/user/ChangePassword";
 import ConfirmAccount from "../features/user/ConfirmAccount";
+import ResetPasswordForm from "../features/user/ResetPasswordForm";
 
 function App() {
   // const dispatch = useDispatch();
@@ -52,8 +53,11 @@ function App() {
         <Route path="/:username/change-password">
           <ChangePassword />
         </Route>
-        <Route path="/:confirm_token">
+        <Route path="/accounts/confirm/:confirm_token">
           <ConfirmAccount />
+        </Route>
+        <Route path="/reset-password/:password_reset_token">
+          <ResetPasswordForm />
         </Route>
         <Route exact path="/">
           <Home />
