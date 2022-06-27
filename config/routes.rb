@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
 
   patch "/changepassword", to: "users#changepassword"
+  patch "/resetpassword", to: "users#resetpassword"
 
   get "/confirmemail/:confirm_token", to: "users#confirm_email"
 

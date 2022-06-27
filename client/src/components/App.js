@@ -15,6 +15,7 @@ import Profile from "../features/user/Profile";
 import ChangePassword from "../features/user/ChangePassword";
 import ConfirmAccount from "../features/user/ConfirmAccount";
 import ResetPasswordForm from "../features/user/ResetPasswordForm";
+import PasswordResetMessage from "../features/user/PasswordResetMessage";
 
 function App() {
   // const dispatch = useDispatch();
@@ -58,6 +59,9 @@ function App() {
         </Route>
         <Route path="/reset-password/:password_reset_token">
           <ResetPasswordForm />
+        </Route>
+        <Route exact path="/reset-password-message">
+          <PasswordResetMessage />
         </Route>
         <Route exact path="/">
           <Home />

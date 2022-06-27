@@ -8,9 +8,9 @@ class User < ApplicationRecord
     
 
     def generate_password_reset_token
-        if self.reset_password_token.blank?
-            self.reset_password_token = SecureRandom.urlsafe_base64.to_s
-        end
+        self.reset_password_token = SecureRandom.urlsafe_base64.to_s
+        self.password_token_sent_at = Time.now.utc
+        self.save!(validate: false)
     end
 
     private

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :confirm_email, :reset_password_send_email]
+    skip_before_action :authorized, only: [:create, :confirm_email, :reset_password_send_email, :resetpassword]
 
     def create
         @user = User.create(user_params)
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     def changepassword
         user = User.find(session[:user_id])
         if(user&.authenticate(params[:old_password]))
-            user.update!(user_update_params)
+            user.update!(user_password_params)
             if user.valid?
                 render json: user
             end
@@ -57,13 +57,38 @@ class UsersController < ApplicationController
         render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
 
+    def resetpassword
+        user = User.find_by(reset_password_token: params[:password_reset_token])
+
+        if user
+            if user.password_token_sent_at + 15.minutes > Time.now.utc
+                user.update!(user_password_params)
+                if user.valid?
+                    user.reset_password_token = nil
+                    user.password_token_sent_at = nil
+                    user.save!(validate: false)
+                    render json: {message: "Your password has successfully been changed"}
+                end
+                
+            else
+                render json: {message: "Your token has expired. Please click forgot my password to generate a new token."}, status: :unauthorized
+            end
+        else
+
+            render json: {message: "fuck off buddy"}
+
+        end
+    rescue ActiveRecord::RecordInvalid => invalid
+        render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+    end
+
     private
 
     def user_params
         params.permit(:first_name, :last_name, :password, :password_confirmation, :birthday, :email, :username)
     end
 
-    def user_update_params
+    def user_password_params
         params.permit(:password, :password_confirmation)
     end
 end
