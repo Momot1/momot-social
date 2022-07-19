@@ -22,6 +22,11 @@ class PostsController < ApplicationController
         render json: {}
     end
 
+    def search
+        posts = Post.where("title LIKE ?", "%" + params[:search] + "%")
+        render json: posts
+    end
+
     private
 
     def post_params

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./css/navbar.css";
+import { searchedPost } from "../features/posts/postSlicer";
+import { fetchPosts } from "../features/posts/postSlicer";
 
 function Navbar() {
   const user = useSelector((state) => state.users.user);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
 
   function loggedInDropdown() {
     return (
@@ -28,10 +32,21 @@ function Navbar() {
     );
   }
 
+  function handleSearch(e) {
+    e.preventDefault();
+    if (search !== "") {
+      fetch(`/posts/search/search=${search}`)
+        .then((resp) => resp.json())
+        .then((posts) => dispatch(searchedPost(posts)));
+    } else {
+      dispatch(fetchPosts());
+    }
+  }
+
   function searchBar() {
     return (
-      <form>
-        <input></input>
+      <form onSubmit={handleSearch}>
+        <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
         <button type="submit">
           <i class="bi bi-search"></i>
         </button>

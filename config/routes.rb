@@ -1,6 +1,8 @@
 # config/routes.rb
 Rails.application.routes.draw do
   resources :posts
+  get "/posts/search/search=:search", to: "posts#search"
+
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 

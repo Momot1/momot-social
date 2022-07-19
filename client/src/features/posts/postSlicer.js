@@ -23,6 +23,9 @@ const postsSlice = createSlice({
         1
       );
     },
+    searchedPost(state, action) {
+      state.posts = action.payload;
+    },
   },
   extraReducers: {
     [fetchPosts.pending](state) {
@@ -35,6 +38,6 @@ const postsSlice = createSlice({
   },
 });
 
-export const { postAdded, postRemoved } = postsSlice.actions;
+export const { postAdded, postRemoved, searchedPost } = postsSlice.actions;
 
 export default postsSlice.reducer;
