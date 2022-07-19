@@ -5,6 +5,8 @@ class User < ApplicationRecord
     validates :email, :username, uniqueness: { case_sensitive: false }
     validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/ }
     validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
+
+    has_many :posts
     
 
     def generate_password_reset_token

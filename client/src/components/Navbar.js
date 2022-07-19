@@ -28,8 +28,20 @@ function Navbar() {
     );
   }
 
+  function searchBar() {
+    return (
+      <form>
+        <input></input>
+        <button type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    );
+  }
+
   return (
     <div className="nav" id="nav-bar">
+      <div>{searchBar()}</div>
       <NavLink exact to="/" className="nav-link btn btn-secondary btn-lg me-4 nav-link">
         Home
       </NavLink>

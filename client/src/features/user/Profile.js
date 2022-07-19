@@ -17,8 +17,19 @@ function Profile() {
 
   return (
     <div>
-      <p>{user.username}</p>
-      <Link to={`/${user.username}/change-password`}>Change Password</Link>
+      <h1>
+        Profile for {user.first_name} {user.last_name}
+      </h1>
+      <p>Username- {user.username}</p>
+      <p>Email Address- {user.email}</p>
+      {user.birthday ? <p>Birthday- {user.birthday}</p> : <p>Add your birthday to your profile</p>}
+      <p>Account Type- {user.is_admin ? "Administrator" : "Member"}</p>
+      <p>
+        <Link to={`/${user.username}/change-password`}>Change Password</Link>
+      </p>
+      <p>
+        <Link to={`/${user.username}/friends`}>My Friends</Link>
+      </p>
     </div>
   );
 }

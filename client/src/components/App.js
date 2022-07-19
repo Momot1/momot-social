@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../store";
 import Login from "../features/user/Login";
-import Home from "./Home";
+import Home from "../features/posts/Home";
 import Navbar from "./Navbar";
 import Signup from "../features/user/Signup";
 import { useEffect } from "react";
@@ -16,10 +16,11 @@ import ChangePassword from "../features/user/ChangePassword";
 import ConfirmAccount from "../features/user/ConfirmAccount";
 import ResetPasswordForm from "../features/user/ResetPasswordForm";
 import PasswordResetMessage from "../features/user/PasswordResetMessage";
+import PostPage from "../features/posts/PostPage";
+import { fetchPosts } from "../features/posts/postSlicer";
+import NewPost from "../features/posts/NewPost";
 
 function App() {
-  // const dispatch = useDispatch();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +31,13 @@ function App() {
         });
       }
     });
+
+    dispatch(fetchPosts());
+    // fetch("/posts")
+    //   .then((resp) => resp.json())
+    //   .then((posts) => {
+    //     dispatch({ type: "setPosts", payload: posts });
+    //   });
   }, []);
 
   return (
@@ -62,6 +70,12 @@ function App() {
         </Route>
         <Route exact path="/reset-password-message">
           <PasswordResetMessage />
+        </Route>
+        <Route exact path="/posts/new">
+          <NewPost />
+        </Route>
+        <Route path="/posts/:id">
+          <PostPage />
         </Route>
         <Route exact path="/">
           <Home />
