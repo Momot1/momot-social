@@ -67,7 +67,7 @@ function PostElement({ post }) {
       </button>
       {user && user.id === post.user_id ? (
         <button onClick={handleDeleteClick}>
-          <i class="bi bi-trash"></i>
+          <i className="bi bi-trash"></i>
         </button>
       ) : null}
     </div>

@@ -25,6 +25,10 @@ function Navbar() {
           Hello, {user.first_name}
         </button>
         <div className="dropdown-menu" aria-describedby="nav-bar-dropdown">
+          <Link to={`/${user.username}/friends`}>My Friends</Link>
+          <br />
+          <Link to={`/${user.username}/messages`}>Messages</Link>
+          <br />
           <Link to={`/${user.username}/profile`}>My Profile</Link>
           <br />
           <Link to="/logout">Logout</Link>
@@ -39,7 +43,15 @@ function Navbar() {
       fetch(`/${e.target.children[2].value}/search/search=${search}`)
         .then((resp) => resp.json())
         .then((result) => {
-          e.target.children[2].value === "posts" ? dispatch(searchedPost(result)) : history.push(`/users/search=${search}`);
+          // e.target.children[2].value === "posts" ? dispatch(searchedPost(result)) : history.push(`/users/search=${search}`);
+
+          if (e.target.children[2].value === "posts") {
+            dispatch(searchedPost(result));
+            history.push("/");
+          } else {
+            history.push(`/users/search=${search}`);
+            dispatch({ type: "search", payload: result });
+          }
 
           // dispatch(searchedPost(result));
         });
@@ -53,12 +65,10 @@ function Navbar() {
       <form onSubmit={handleSearch}>
         <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
         <button type="submit">
-          <i class="bi bi-search"></i>
+          <i className="bi bi-search"></i>
         </button>
         <select>
-          <option selected value="posts">
-            Posts
-          </option>
+          <option value="posts">Posts</option>
           <option value="users">Users</option>
         </select>
       </form>
