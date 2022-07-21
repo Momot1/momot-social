@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :confirm_email, :reset_password_send_email, :resetpassword]
+    skip_before_action :authorized, only: [:create, :confirm_email, :reset_password_send_email, :resetpassword, :search]
 
     def create
         @user = User.create(user_params)
@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     def show
         user = User.find(session[:user_id])
         render json: user
+    end
+
+    def search
+        users = User.where("username LIKE ?", "%" + params[:search] + "%")
+        render json: users
     end
 
     def confirm_email

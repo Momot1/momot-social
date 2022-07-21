@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
   resources :posts
   get "/posts/search/search=:search", to: "posts#search"
+  get "/users/search/search=:search", to: "users#search"
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

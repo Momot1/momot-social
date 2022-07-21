@@ -19,6 +19,7 @@ import PasswordResetMessage from "../features/user/PasswordResetMessage";
 import PostPage from "../features/posts/PostPage";
 import { fetchPosts } from "../features/posts/postSlicer";
 import NewPost from "../features/posts/NewPost";
+import SearchedUsers from "../features/user/SearchedUsers";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,6 +77,9 @@ function App() {
         </Route>
         <Route path="/posts/:id">
           <PostPage />
+        </Route>
+        <Route path="/users/search=:search">
+          <SearchedUsers />
         </Route>
         <Route exact path="/">
           <Home />

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./css/navbar.css";
 import { searchedPost } from "../features/posts/postSlicer";
 import { fetchPosts } from "../features/posts/postSlicer";
 
 function Navbar() {
+  const history = useHistory();
   const user = useSelector((state) => state.users.user);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
@@ -35,9 +36,13 @@ function Navbar() {
   function handleSearch(e) {
     e.preventDefault();
     if (search !== "") {
-      fetch(`/posts/search/search=${search}`)
+      fetch(`/${e.target.children[2].value}/search/search=${search}`)
         .then((resp) => resp.json())
-        .then((posts) => dispatch(searchedPost(posts)));
+        .then((result) => {
+          e.target.children[2].value === "posts" ? dispatch(searchedPost(result)) : history.push(`/users/search=${search}`);
+
+          // dispatch(searchedPost(result));
+        });
     } else {
       dispatch(fetchPosts());
     }
@@ -50,6 +55,12 @@ function Navbar() {
         <button type="submit">
           <i class="bi bi-search"></i>
         </button>
+        <select>
+          <option selected value="posts">
+            Posts
+          </option>
+          <option value="users">Users</option>
+        </select>
       </form>
     );
   }
