@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
     def search
         users = User.where("username LIKE ?", "%" + params[:search] + "%")
-        render json: users
+        render json: users, each_serializer: UserSearchSerializer
     end
 
     def confirm_email

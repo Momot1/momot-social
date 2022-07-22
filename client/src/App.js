@@ -1,25 +1,23 @@
 // client/src/components/App.js
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "../store";
-import Login from "../features/user/Login";
-import Home from "../features/posts/Home";
-import Navbar from "./Navbar";
-import Signup from "../features/user/Signup";
+import Login from "./features/user/Login";
+import Home from "./features/posts/Home";
+import Navbar from "./components/Navbar";
+import Signup from "./features/user/Signup";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Logout from "../features/user/Logout";
-import "./css/app.css";
-import ForgotPassword from "../features/user/ForgotPassword";
-import Profile from "../features/user/Profile";
-import ChangePassword from "../features/user/ChangePassword";
-import ConfirmAccount from "../features/user/ConfirmAccount";
-import ResetPasswordForm from "../features/user/ResetPasswordForm";
-import PasswordResetMessage from "../features/user/PasswordResetMessage";
-import PostPage from "../features/posts/PostPage";
-import { fetchPosts } from "../features/posts/postSlicer";
-import NewPost from "../features/posts/NewPost";
-import SearchedUsers from "../features/user/SearchedUsers";
+import Logout from "./features/user/Logout";
+import "./app.css";
+import ForgotPassword from "./features/user/ForgotPassword";
+import Profile from "./features/user/Profile";
+import ChangePassword from "./features/user/ChangePassword";
+import ConfirmAccount from "./features/user/ConfirmAccount";
+import ResetPasswordForm from "./features/user/ResetPasswordForm";
+import PasswordResetMessage from "./features/user/PasswordResetMessage";
+import PostPage from "./features/posts/PostPage";
+import { fetchPosts } from "./features/posts/postSlicer";
+import NewPost from "./features/posts/NewPost";
+import SearchedUsers from "./features/user/SearchedUsers";
 
 function App() {
   const dispatch = useDispatch();
