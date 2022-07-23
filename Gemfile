@@ -34,6 +34,8 @@ gem "bootsnap", require: false
 
 # gem 'power_of_friendship', '~> 1.0', '>= 1.0.2'
 
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
