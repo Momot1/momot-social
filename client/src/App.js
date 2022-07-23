@@ -18,6 +18,7 @@ import PostPage from "./features/posts/PostPage";
 import { fetchPosts } from "./features/posts/postSlicer";
 import NewPost from "./features/posts/NewPost";
 import SearchedUsers from "./features/user/SearchedUsers";
+import UserFriends from "./features/user/UserFriends";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
     fetch("/me").then((resp) => {
       if (resp.ok) {
         resp.json().then((user) => {
+          console.log(user);
           dispatch({ type: "login", payload: user });
         });
       }
@@ -78,6 +80,9 @@ function App() {
         </Route>
         <Route path="/users/search=:search">
           <SearchedUsers />
+        </Route>
+        <Route path="/:username/friends">
+          <UserFriends />
         </Route>
         <Route exact path="/">
           <Home />
