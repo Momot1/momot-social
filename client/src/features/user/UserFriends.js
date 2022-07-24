@@ -3,7 +3,13 @@ import UserCard from "./UserCard";
 import { useSelector } from "react-redux";
 
 function UserFriends() {
-  const friends = useSelector((state) => state.users.user.friends);
+  const user = useSelector((state) => state.users.user);
+
+  if (!user) {
+    return <div>Loading....</div>;
+  }
+
+  const friends = user.friends;
 
   const friendElements = friends.map((friend) => <UserCard user={friend} key={friend.id} />);
 

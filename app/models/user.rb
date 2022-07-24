@@ -7,6 +7,7 @@ class User < ApplicationRecord
     validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
 
     has_many :posts
+    has_many :comments
 
     has_many :friendships,
         ->(user) { FriendshipsQuery.both_ways(user_id: user.id) },
