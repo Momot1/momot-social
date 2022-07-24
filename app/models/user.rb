@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
     has_many :posts
     has_many :comments
+    has_many :messages
+    has_many :user_chats
+    has_many :chats, through: :user_chats
 
     has_many :friendships,
         ->(user) { FriendshipsQuery.both_ways(user_id: user.id) },
