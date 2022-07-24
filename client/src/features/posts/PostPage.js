@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentElement from "./CommentElement";
 
@@ -46,13 +46,17 @@ function PostPage() {
     <div>
       <h2>{post.title}</h2>
       <p>{post.post}</p>
-      {comments}
+      {comments.length > 0 ? comments : <p>Currently no comments, be the first to comment!</p>}
       {user ? (
         <form onSubmit={handleCommentSubmit}>
           <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
           <button type="submit">Comment</button>
         </form>
-      ) : null}
+      ) : (
+        <p>
+          Please <Link to="/login">login</Link> to comment
+        </p>
+      )}
     </div>
   );
 }

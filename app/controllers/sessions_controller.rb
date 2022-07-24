@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         if user&.authenticate(params[:password])
             if user.confirmed
                 session[:user_id] = user.id
-                render json: user
+                render json: user, include: "**"
             else
                 render json: {error: "Please confirm your email address to continue"}, status: :unauthorized
             end

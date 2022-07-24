@@ -16,9 +16,9 @@ function CommentElement({ comment, removeComment }) {
 
   return (
     <div>
-      <h5>{comment.username} -</h5>
+      <h5>@{comment.username} -</h5>
       <p>{comment.comment}</p>
-      {user && comment.username === user.username ? (
+      {(user && comment.username === user.username) || user.is_admin ? (
         <button onClick={handleCommentDelete}>
           <i className="bi bi-trash"></i>
         </button>

@@ -19,6 +19,8 @@ import { fetchPosts } from "./features/posts/postSlicer";
 import NewPost from "./features/posts/NewPost";
 import SearchedUsers from "./features/user/SearchedUsers";
 import UserFriends from "./features/user/UserFriends";
+import NotFound from "./components/NotFound";
+import Messages from "./features/user/Messages";
 
 function App() {
   const dispatch = useDispatch();
@@ -84,8 +86,14 @@ function App() {
         <Route path="/:username/friends">
           <UserFriends />
         </Route>
+        <Route path="/:username/messages">
+          <Messages />
+        </Route>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="/">
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>
