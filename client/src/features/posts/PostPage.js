@@ -21,7 +21,12 @@ function PostPage() {
     return <div>Loading...</div>;
   }
 
-  const comments = post.comments.map((comment) => <CommentElement comment={comment} key={comment.id} />);
+  function removeComment(id) {
+    const filteredComments = post.comments.filter((comment) => comment.id !== id);
+    setPost({ ...post, comments: filteredComments });
+  }
+
+  const comments = post.comments.map((comment) => <CommentElement comment={comment} key={comment.id} removeComment={removeComment} />);
 
   function handleCommentSubmit(e) {
     e.preventDefault();

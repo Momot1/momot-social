@@ -1,15 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function CommentElement({ comment }) {
-  const username = useSelector((state) => state.users.user.username);
+function CommentElement({ comment, removeComment }) {
+  const user = useSelector((state) => state.users.user);
+
+  function handleCommentDelete() {
+    fetch(`/comments/${comment.id}`, {
+      method: "DELETE",
+    })
+      .then((resp) => resp.json())
+      .then(() => {
+        removeComment(comment.id);
+      });
+  }
 
   return (
     <div>
       <h5>{comment.username} -</h5>
       <p>{comment.comment}</p>
-      {comment.username === username ? (
-        <button>
+      {user && comment.username === user.username ? (
+        <button onClick={handleCommentDelete}>
           <i className="bi bi-trash"></i>
         </button>
       ) : null}

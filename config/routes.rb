@@ -1,7 +1,7 @@
 # config/routes.rb
 Rails.application.routes.draw do
   resources :posts
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
   get "/posts/search/search=:search", to: "posts#search"
   get "/users/search/search=:search", to: "users#search"
 
