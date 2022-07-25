@@ -2,16 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-function UserCard({ friend }) {
-  const user = useSelector((state) => state.users.user);
+function UserCard({ user }) {
+  const loggedUser = useSelector((state) => state.users.user);
   const history = useHistory();
-  console.log(user);
 
   function handleMessageClick() {
-    console.log(friend);
-
-    if (user.chats.find((chat) => chat.users.find((user) => user.id === friend.id))) {
-      history.push(`/${user.username}/messages/to=${friend.username}`);
+    if (loggedUser.chats.find((chat) => chat.users.find((user) => user.id === loggedUser.id))) {
+      history.push(`/${user.username}/messages/to=${user.username}`);
     } else {
     }
   }
@@ -19,9 +16,9 @@ function UserCard({ friend }) {
   return (
     <div>
       <h4>
-        {friend.first_name} {friend.last_name}
+        {user.first_name} {user.last_name}
       </h4>
-      <p>@{friend.username}</p>
+      <p>@{user.username}</p>
       <button onClick={handleMessageClick}>Message</button>
     </div>
   );

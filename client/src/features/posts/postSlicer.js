@@ -12,6 +12,7 @@ const postsSlice = createSlice({
   initialState: {
     status: [],
     posts: [],
+    searchedPosts: [],
   },
   reducers: {
     postAdded(state, action) {
@@ -24,7 +25,7 @@ const postsSlice = createSlice({
       );
     },
     searchedPost(state, action) {
-      state.posts = action.payload;
+      state.searchedPosts = action.payload;
     },
   },
   extraReducers: {

@@ -18,13 +18,14 @@ function NewPost() {
   function onPostSubmit(e) {
     e.preventDefault();
 
-    fetch("/posts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => resp.json())
-      .then((post) => dispatch(postAdded(post)));
+    console.log(e.target.children[2].children[0].value);
+    // fetch("/posts", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(formData),
+    // })
+    //   .then((resp) => resp.json())
+    //   .then((post) => dispatch(postAdded(post)));
   }
 
   return (
@@ -41,6 +42,9 @@ function NewPost() {
             Post
           </span>
           <input type="text" name="post" value={formData.post} onChange={updateFormData} className="form-control" />
+        </div>
+        <div className="input-group mb-3">
+          <input type="file" multiple />
         </div>
         <button type="submit" className="btn btn-lg btn-secondary">
           Post

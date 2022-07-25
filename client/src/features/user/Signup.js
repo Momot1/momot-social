@@ -44,7 +44,7 @@ function Signup() {
         if (resp.ok) {
           resp.json().then((user) => {
             // dispatch({ type: "login", payload: user });
-            history.push("/");
+            history.push("/confirm-email");
           });
         } else {
           resp.json().then((errors) => setErrors(errors));

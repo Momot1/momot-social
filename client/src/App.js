@@ -22,6 +22,8 @@ import UserFriends from "./features/user/UserFriends";
 import NotFound from "./components/NotFound";
 import Messages from "./features/user/Messages";
 import Message from "./features/user/Message";
+import SearchedPosts from "./features/posts/SearchedPosts";
+import ConfirmEmailMessage from "./features/user/ConfirmEmailMessage";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,28 +50,28 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Switch>
-        <Route path="/login">
+        <Route exact path="/login">
           <Login />
         </Route>
-        <Route path="/signup">
+        <Route exact path="/signup">
           <Signup />
         </Route>
-        <Route path="/logout">
+        <Route exact path="/logout">
           <Logout />
         </Route>
-        <Route path="/forgot-password">
+        <Route exact path="/forgot-password">
           <ForgotPassword />
         </Route>
-        <Route path="/:username/profile">
+        <Route exact path="/:username/profile">
           <Profile />
         </Route>
-        <Route path="/:username/change-password">
+        <Route exact path="/:username/change-password">
           <ChangePassword />
         </Route>
-        <Route path="/accounts/confirm/:confirm_token">
+        <Route exact path="/accounts/confirm/:confirm_token">
           <ConfirmAccount />
         </Route>
-        <Route path="/reset-password/:password_reset_token">
+        <Route exact path="/reset-password/:password_reset_token">
           <ResetPasswordForm />
         </Route>
         <Route exact path="/reset-password-message">
@@ -78,13 +80,16 @@ function App() {
         <Route exact path="/posts/new">
           <NewPost />
         </Route>
-        <Route path="/posts/:id">
+        <Route exact path="/posts/:id">
           <PostPage />
         </Route>
-        <Route path="/users/search=:search">
+        <Route exact path="/search-posts/search=:search">
+          <SearchedPosts />
+        </Route>
+        <Route exact path="/users/search=:search">
           <SearchedUsers />
         </Route>
-        <Route path="/:username/friends">
+        <Route exact path="/:username/friends">
           <UserFriends />
         </Route>
         <Route exact path="/:username/messages">
@@ -92,6 +97,9 @@ function App() {
         </Route>
         <Route exact path="/:username/messages/to=:otheruser">
           <Message />
+        </Route>
+        <Route exact path="/confirm-email">
+          <ConfirmEmailMessage />
         </Route>
         <Route exact path="/">
           <Home />

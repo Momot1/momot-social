@@ -35,6 +35,7 @@ function Login() {
         if (resp.ok) {
           resp.json().then((user) => {
             dispatch({ type: "login", payload: user });
+            window.history.go(-1);
           });
         } else {
           resp.json().then(setErrors);

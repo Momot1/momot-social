@@ -11,7 +11,7 @@ function UserFriends() {
 
   const friends = user.friends;
 
-  const friendElements = friends.map((friend) => <UserCard friend={friend} key={friend.id} />);
+  const friendElements = friends.map((friend) => <UserCard user={friend} key={friend.id} />);
 
   return <div>{friendElements}</div>;
 }

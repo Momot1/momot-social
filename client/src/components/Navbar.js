@@ -11,6 +11,8 @@ function Navbar() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
+  const searchedPosts = useSelector((state) => state.posts.searchedPosts);
+
   function loggedInDropdown() {
     return (
       <div className="dropdown">
@@ -46,17 +48,18 @@ function Navbar() {
           // e.target.children[2].value === "posts" ? dispatch(searchedPost(result)) : history.push(`/users/search=${search}`);
 
           if (e.target.children[2].value === "posts") {
+            history.push(`/search-posts/search=${search}`);
             dispatch(searchedPost(result));
-            history.push("/");
+            setSearch("");
+            // history.push("/");
           } else {
             history.push(`/users/search=${search}`);
+            setSearch("");
             dispatch({ type: "search", payload: result });
           }
 
           // dispatch(searchedPost(result));
         });
-    } else {
-      dispatch(fetchPosts());
     }
   }
 
