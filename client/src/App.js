@@ -21,6 +21,7 @@ import SearchedUsers from "./features/user/SearchedUsers";
 import UserFriends from "./features/user/UserFriends";
 import NotFound from "./components/NotFound";
 import Messages from "./features/user/Messages";
+import Message from "./features/user/Message";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,8 +87,11 @@ function App() {
         <Route path="/:username/friends">
           <UserFriends />
         </Route>
-        <Route path="/:username/messages">
+        <Route exact path="/:username/messages">
           <Messages />
+        </Route>
+        <Route exact path="/:username/messages/to=:otheruser">
+          <Message />
         </Route>
         <Route exact path="/">
           <Home />
