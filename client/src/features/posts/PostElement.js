@@ -65,7 +65,7 @@ function PostElement({ post }) {
       <button onClick={handleCommentClick}>
         <i className="bi bi-chat-square-text"></i>
       </button>
-      {user && user.id === post.user_id ? (
+      {user && (user.id === post.user_id || user.is_admin) ? (
         <button onClick={handleDeleteClick}>
           <i className="bi bi-trash"></i>
         </button>

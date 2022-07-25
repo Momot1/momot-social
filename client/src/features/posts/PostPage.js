@@ -26,7 +26,9 @@ function PostPage() {
     setPost({ ...post, comments: filteredComments });
   }
 
-  const comments = post.comments.map((comment) => <CommentElement comment={comment} key={comment.id} removeComment={removeComment} />);
+  const comments = post.comments.map((comment) => (
+    <CommentElement comment={comment} key={comment.id} removeComment={removeComment} ownerId={post.user_id} />
+  ));
 
   function handleCommentSubmit(e) {
     e.preventDefault();

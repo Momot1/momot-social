@@ -16,8 +16,7 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        user = User.find(session[:user_id])
-        post = user.posts.find(params[:id])
+        post = Post.find(params[:id])
         post.destroy
         render json: {}
     end
