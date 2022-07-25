@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
   resources :posts
   resources :comments, only: [:create, :destroy]
+  resources :messages, only: [:create]
   get "/posts/search/search=:search", to: "posts#search"
   get "/users/search/search=:search", to: "users#search"
 
