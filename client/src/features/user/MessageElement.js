@@ -7,7 +7,7 @@ function MessageElement({ message }) {
 
   return (
     <div>
-      <p className={user.id === message.user_id ? "blue" : "green"}>
+      <p className={user.id === message.user_id ? "blue" : "gray"}>
         {message.created_at}- {message.message}
       </p>
     </div>

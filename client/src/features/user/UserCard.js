@@ -7,9 +7,12 @@ function UserCard({ user }) {
   const history = useHistory();
 
   function handleMessageClick() {
-    if (loggedUser.chats.find((chat) => chat.users.find((user) => user.id === loggedUser.id))) {
+    // console.log(loggedUser.chats.find((chat) => chat.users.find((resultUser) => resultUser.id === user.id)));
+
+    if (loggedUser.chats.find((chat) => chat.users.find((resultUser) => resultUser.id === user.id))) {
       history.push(`/${user.username}/messages/to=${user.username}`);
     } else {
+      console.log("yo");
     }
   }
 
@@ -20,6 +23,7 @@ function UserCard({ user }) {
       </h4>
       <p>@{user.username}</p>
       <button onClick={handleMessageClick}>Message</button>
+      {loggedUser.friends.find((friend) => friend.id === user.id) ? <button>Remove Friend</button> : <button>Add Friend</button>}
     </div>
   );
 }
