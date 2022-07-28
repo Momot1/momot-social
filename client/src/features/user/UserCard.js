@@ -1,10 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function UserCard({ user }) {
   const loggedUser = useSelector((state) => state.users.user);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   function handleMessageClick() {
     // console.log(loggedUser.chats.find((chat) => chat.users.find((resultUser) => resultUser.id === user.id)));
@@ -12,7 +13,17 @@ function UserCard({ user }) {
     if (loggedUser.chats.find((chat) => chat.users.find((resultUser) => resultUser.id === user.id))) {
       history.push(`/${user.username}/messages/to=${user.username}`);
     } else {
-      console.log("yo");
+      fetch("/user_chats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ loggedUser_id: loggedUser.id, recipientUser: user.id }),
+      })
+        .then((resp) => resp.json())
+        .then((resp) => {
+          dispatch({ type: "update chats", payload: resp });
+          history.push(`/${resp.username}/messages/to=${user.username}`);
+          //   console.log(resp);
+        });
     }
   }
 
