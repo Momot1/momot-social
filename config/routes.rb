@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
+  delete "/users/removefriend/:id", to: "users#remove_friend"
+  post "/users/addfriend", to: "users#add_friend"
 
   patch "/changepassword", to: "users#changepassword"
   patch "/resetpassword", to: "users#resetpassword"

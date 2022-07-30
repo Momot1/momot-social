@@ -9,6 +9,10 @@ function UserFriends() {
     return <div>Loading....</div>;
   }
 
+  if (user.friends && user.friends.length < 1) {
+    return <div>No Friends</div>;
+  }
+
   const friends = user.friends;
 
   const friendElements = friends.map((friend) => <UserCard user={friend} key={friend.id} />);

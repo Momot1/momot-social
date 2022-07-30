@@ -27,6 +27,29 @@ function UserCard({ user }) {
     }
   }
 
+  function handleRemoveFriendClick() {
+    fetch(`/users/removefriend/${user.id}`, {
+      method: "DELETE",
+    })
+      .then((resp) => resp.json())
+      .then((user) => {
+        // console.log(user);
+        dispatch({ type: "update chats", payload: user });
+      });
+  }
+
+  function handleAddFriendClick() {
+    fetch("/users/addfriend", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ friend_id: user.id, user_id: loggedUser.id }),
+    })
+      .then((resp) => resp.json())
+      .then((user) => {
+        dispatch({ type: "update chats", payload: user });
+      });
+  }
+
   return (
     <div>
       <h4>
@@ -34,7 +57,11 @@ function UserCard({ user }) {
       </h4>
       <p>@{user.username}</p>
       <button onClick={handleMessageClick}>Message</button>
-      {loggedUser.friends.find((friend) => friend.id === user.id) ? <button>Remove Friend</button> : <button>Add Friend</button>}
+      {loggedUser.friends.find((friend) => friend.id === user.id) ? (
+        <button onClick={handleRemoveFriendClick}>Remove Friend</button>
+      ) : (
+        <button onClick={handleAddFriendClick}>Add Friend</button>
+      )}
     </div>
   );
 }

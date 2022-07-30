@@ -1,8 +1,10 @@
 .blue{
     background-color: #0D85FE;
-    color: white
+    color: white;
+    max-width: 200px;
 }
 
 .gray{
     background-color: #E5E5EA;
+    max-width: 200px;
 }

@@ -48,7 +48,7 @@ class UsersController < ApplicationController
         if(user&.authenticate(params[:old_password]))
             user.update!(user_password_params)
             if user.valid?
-                render json: user
+                render json: user, include: "**"
             end
         else
             user.errors.add(:base, "Incorrect old password")
@@ -85,6 +85,24 @@ class UsersController < ApplicationController
         end
     rescue ActiveRecord::RecordInvalid => invalid
         render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def remove_friend
+        user = User.find(session[:user_id])
+        friendship = user.friendships.where(friend_id: params[:id], user_id: user.id)
+        if friendship.length == 0
+            friendship = user.friendships.where(friend_id: user.id, user_id: params[:id])
+        end
+        friendship.first.destroy
+        # friend = User.find(params[:id])
+        
+        render json: user, include: "**"
+    end
+
+    def add_friend
+        user = User.find(session[:user_id])
+        user.friendships.create(friend_id: params[:friend_id])
+        render json: user, include: "**"
     end
 
     private
