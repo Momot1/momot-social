@@ -44,6 +44,10 @@ function PostElement({ post }) {
       });
   }
 
+  function handleUsernameClick() {
+    console.log(post.username);
+  }
+
   function userLoggedIn() {
     return (
       <>
@@ -59,6 +63,7 @@ function PostElement({ post }) {
 
   return (
     <div>
+      <p onClick={handleUsernameClick}>{post.username}</p>
       <h4>{post.title}</h4>
       <p>{post.post}</p>
       {user ? userLoggedIn() : null}
