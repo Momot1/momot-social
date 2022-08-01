@@ -57,7 +57,7 @@ function UserCard({ user }) {
       </h4>
       <p>@{user.username}</p>
       <button onClick={handleMessageClick}>Message</button>
-      {loggedUser.friends.find((friend) => friend.id === user.id) ? (
+      {loggedUser.friends.confirmed.find((friend) => friend.id === user.id) ? (
         <button onClick={handleRemoveFriendClick}>Remove Friend</button>
       ) : (
         <button onClick={handleAddFriendClick}>Add Friend</button>

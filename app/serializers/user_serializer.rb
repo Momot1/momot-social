@@ -1,13 +1,13 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :is_admin, :birthday, :first_name, :last_name, :test
+  attributes :id, :username, :email, :is_admin, :birthday, :first_name, :last_name, :friends
 
-  has_many :friends, serializer: UserFriendsSerializer
+  # has_many :friends, serializer: UserFriendsSerializer
 
   # has_many :friendships, serializer: FriendshipSerializer
 
   has_many :chats, serializer: UserChatSerializer
 
-  def test
+  def friends
     columns = "id, first_name, last_name, username, birthday, email"
 
     pending = []

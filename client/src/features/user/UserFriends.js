@@ -9,15 +9,24 @@ function UserFriends() {
     return <div>Loading....</div>;
   }
 
-  if (user.friends && user.friends.length < 1) {
+  if (user.friends && user.friends.confirmed.length < 1) {
     return <div>No Friends</div>;
   }
 
-  const friends = user.friends;
+  const friends = user.friends.confirmed;
+
+  const pendingFriends = user.friends.pending;
 
   const friendElements = friends.map((friend) => <UserCard user={friend} key={friend.id} />);
+  const pendingFriendElements = friends.map((friend) => {});
 
-  return <div>{friendElements}</div>;
+  return (
+    <div>
+      <h4>My Friends</h4>
+      {friendElements}
+      <h4>Pending friendships</h4>
+    </div>
+  );
 }
 
 export default UserFriends;
