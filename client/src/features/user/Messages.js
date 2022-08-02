@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import ChatElement from "./ChatElement";
 
 function Messages() {
   const user = useSelector((state) => state.users.user);
+  const history = useHistory();
 
   console.log(user);
 
@@ -13,7 +15,16 @@ function Messages() {
 
   const chatElements = user.chats.map((chat) => <ChatElement key={chat.id} chat={chat} />);
 
-  return <div>{chatElements}</div>;
+  function handleNewMessageClick() {
+    history.push("/mommot/messages/new");
+  }
+
+  return (
+    <div>
+      <button onClick={handleNewMessageClick}>New Message</button>
+      {chatElements}
+    </div>
+  );
 }
 
 export default Messages;

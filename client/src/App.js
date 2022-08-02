@@ -25,6 +25,7 @@ import Message from "./features/user/Message";
 import SearchedPosts from "./features/posts/SearchedPosts";
 import ConfirmEmailMessage from "./features/user/ConfirmEmailMessage";
 import UserPosts from "./features/posts/UserPosts";
+import NewMessage from "./features/user/NewMessage";
 
 function App() {
   const dispatch = useDispatch();
@@ -98,6 +99,9 @@ function App() {
         </Route>
         <Route exact path="/:username/messages">
           <Messages />
+        </Route>
+        <Route exact path="/:username/messages/new">
+          <NewMessage />
         </Route>
         <Route exact path="/:username/messages/to=:otheruser">
           <Message />

@@ -26,7 +26,6 @@ function ChatElement({ chat }) {
           {otherUser[0].first_name} {otherUser[0].last_name}
         </h4>
       </Link>
-
       <p>{lastMessage}</p>
     </div>
   );
