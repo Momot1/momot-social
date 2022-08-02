@@ -13,7 +13,6 @@ class PostsController < ApplicationController
         user = User.find(session[:user_id])
         post = user.posts.create!(post_params)
         render json: post, status: :created 
-        # render json: {params: params}
     end
 
     def destroy
@@ -31,6 +30,5 @@ class PostsController < ApplicationController
 
     def post_params
         params.permit(:title, :post, :image)
-
     end
 end
