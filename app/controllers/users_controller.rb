@@ -112,6 +112,11 @@ class UsersController < ApplicationController
         render json: user, include: "**"
     end
 
+    def posts
+        user = User.find_by(username: params[:username])
+        render json: user.posts
+    end
+
     private
 
     def user_params

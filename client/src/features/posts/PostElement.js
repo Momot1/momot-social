@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { postRemoved } from "./postSlicer";
 
 function PostElement({ post }) {
   const history = useHistory();
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
+  const [isLiked, setIsLiked] = useState(false);
 
   function handleCommentClick() {
     history.push(`/posts/${post.id}`);
@@ -23,17 +24,6 @@ function PostElement({ post }) {
     }
   }
 
-  function handleDislikeClick(e) {
-    const dislikeBtn = e.currentTarget.children[0];
-    if (e.currentTarget.children[0].classList.contains("bi-hand-thumbs-down")) {
-      dislikeBtn.classList.remove("bi-hand-thumbs-down");
-      dislikeBtn.classList.add("bi-hand-thumbs-down-fill");
-    } else {
-      dislikeBtn.classList.add("bi-hand-thumbs-down");
-      dislikeBtn.classList.remove("bi-hand-thumbs-down-fill");
-    }
-  }
-
   function handleDeleteClick() {
     fetch(`/posts/${post.id}`, {
       method: "DELETE",
@@ -44,26 +34,17 @@ function PostElement({ post }) {
       });
   }
 
-  function handleUsernameClick() {
-    console.log(post.username);
-  }
-
   function userLoggedIn() {
     return (
-      <>
-        <button onClick={handleLikeClick}>
-          <i className="bi bi-hand-thumbs-up"></i>
-        </button>
-        <button onClick={handleDislikeClick}>
-          <i className="bi bi-hand-thumbs-down"></i>
-        </button>
-      </>
+      <button onClick={handleLikeClick}>
+        <i className={isLiked ? "bi-hand-thumbs-up-fill" : "bi bi-hand-thumbs-up"}></i>
+      </button>
     );
   }
 
   return (
     <div>
-      <p onClick={handleUsernameClick}>{post.username}</p>
+      <Link to={`/${post.username}/posts`}>{post.username}</Link>
       <h4>{post.title}</h4>
       <p>{post.post}</p>
       {user ? userLoggedIn() : null}

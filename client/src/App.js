@@ -24,6 +24,7 @@ import Messages from "./features/user/Messages";
 import Message from "./features/user/Message";
 import SearchedPosts from "./features/posts/SearchedPosts";
 import ConfirmEmailMessage from "./features/user/ConfirmEmailMessage";
+import UserPosts from "./features/posts/UserPosts";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,9 @@ function App() {
         </Route>
         <Route exact path="/:username/change-password">
           <ChangePassword />
+        </Route>
+        <Route exact path="/:username/posts">
+          <UserPosts />
         </Route>
         <Route exact path="/accounts/confirm/:confirm_token">
           <ConfirmAccount />

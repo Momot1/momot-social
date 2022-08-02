@@ -1,5 +1,6 @@
 # config/routes.rb
 Rails.application.routes.draw do
+  resources :likes
   resources :posts
   resources :comments, only: [:create, :destroy]
   resources :messages, only: [:create]
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   delete "/users/removefriend/:id", to: "users#remove_friend"
   post "/users/addfriend", to: "users#add_friend"
   get "/users/confirmfriend/:id", to: "users#confirm_friend"
+  get "/users/posts/:username", to: "users#posts"
 
   patch "/changepassword", to: "users#changepassword"
   patch "/resetpassword", to: "users#resetpassword"
