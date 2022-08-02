@@ -14,10 +14,10 @@ class UserSerializer < ActiveModel::Serializer
     object.friendships.where(status: "pending").each do |friendship|
       if object.id == friendship.user_id
         user = User.where(id: friendship.friend_id).select(columns).first
-        pending.push(user)
+        pending.push({friend: user, sender_id: friendship.user_id, id: friendship.id})
       else
         user = User.where(id: friendship.user_id).select(columns).first
-        pending.push(user)
+        pending.push({friend: user, sender_id: friendship.user_id, id: friendship.id})
       end
       # pending.push({user_id: object.id, friendship_user_id: friendship.user_id})
     end

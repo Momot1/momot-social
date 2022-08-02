@@ -50,6 +50,18 @@ function UserCard({ user }) {
       });
   }
 
+  function checkFriends() {
+    if (loggedUser.friends.confirmed.find((friend) => friend.id === user.id)) {
+      return <button onClick={handleRemoveFriendClick}>Remove Friend</button>;
+    } else {
+      if (loggedUser.friends.pending.find((friend) => friend.friend.id === user.id)) {
+        return <button disabled>Request Sent</button>;
+      } else {
+        return <button onClick={handleAddFriendClick}>Add Friend</button>;
+      }
+    }
+  }
+
   return (
     <div>
       <h4>
@@ -57,11 +69,7 @@ function UserCard({ user }) {
       </h4>
       <p>@{user.username}</p>
       <button onClick={handleMessageClick}>Message</button>
-      {loggedUser.friends.confirmed.find((friend) => friend.id === user.id) ? (
-        <button onClick={handleRemoveFriendClick}>Remove Friend</button>
-      ) : (
-        <button onClick={handleAddFriendClick}>Add Friend</button>
-      )}
+      {checkFriends()}
     </div>
   );
 }

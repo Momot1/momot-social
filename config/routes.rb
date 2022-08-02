@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   delete "/users/removefriend/:id", to: "users#remove_friend"
   post "/users/addfriend", to: "users#add_friend"
+  get "/users/confirmfriend/:id", to: "users#confirm_friend"
 
   patch "/changepassword", to: "users#changepassword"
   patch "/resetpassword", to: "users#resetpassword"

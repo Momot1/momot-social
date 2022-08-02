@@ -105,6 +105,13 @@ class UsersController < ApplicationController
         render json: user, include: "**"
     end
 
+    def confirm_friend
+        friendship = Friendship.find(params[:id])
+        friendship.update(status: "confirmed")
+        user = User.find(session[:user_id])
+        render json: user, include: "**"
+    end
+
     private
 
     def user_params

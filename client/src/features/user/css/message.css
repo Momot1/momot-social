@@ -8,3 +8,7 @@
     background-color: #E5E5EA;
     max-width: 200px;
 }
+
+.gray, .blue{
+    overflow-wrap: break-word;
+}
