@@ -7,21 +7,50 @@ function PostElement({ post }) {
   const history = useHistory();
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(checkIfLiked);
 
   function handleCommentClick() {
     history.push(`/posts/${post.id}`);
   }
 
-  function handleLikeClick(e) {
-    const likeBtn = e.currentTarget.children[0];
-    if (likeBtn.classList.contains("bi-hand-thumbs-up")) {
-      likeBtn.classList.remove("bi-hand-thumbs-up");
-      likeBtn.classList.add("bi-hand-thumbs-up-fill");
+  function checkIfLiked() {
+    if (user && user.likes.find((like) => like.post_id === post.id)) {
+      return true;
     } else {
-      likeBtn.classList.add("bi-hand-thumbs-up");
-      likeBtn.classList.remove("bi-hand-thumbs-up-fill");
+      return false;
     }
+  }
+
+  if (!isLiked && user && user.likes.find((like) => like.post_id === post.id)) {
+    setIsLiked(true);
+  }
+
+  function handleLikeClick() {
+    if (!isLiked) {
+      fetch("/likes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ post_id: post.id }),
+      })
+        .then((resp) => resp.json())
+        .then((user) => {
+          dispatch({ type: "update chats", payload: user });
+          console.log(user);
+          setIsLiked(true);
+        });
+    } else {
+      const like = user.likes.find((like) => post.id === like.post_id);
+      fetch(`/likes/${like.id}`, {
+        method: "DELETE",
+      })
+        .then((resp) => resp.json())
+        .then((user) => {
+          dispatch({ type: "update chats", payload: user });
+          setIsLiked(false);
+        });
+    }
+
+    // setIsLiked(!isLiked);
   }
 
   function handleDeleteClick() {

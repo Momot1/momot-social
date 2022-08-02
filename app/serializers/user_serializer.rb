@@ -7,6 +7,8 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :chats, serializer: UserChatSerializer
 
+  has_many :likes
+
   def friends
     columns = "id, first_name, last_name, username, birthday, email"
 

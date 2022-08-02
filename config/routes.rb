@@ -1,6 +1,6 @@
 # config/routes.rb
 Rails.application.routes.draw do
-  resources :likes
+  resources :likes, only: [:create, :destroy]
   resources :posts
   resources :comments, only: [:create, :destroy]
   resources :messages, only: [:create]
