@@ -18,6 +18,8 @@ function Home() {
     </div>
   ));
 
+  console.log(posts);
+
   function handleNewPostButtonClick() {
     if (user) {
       history.push("/posts/new");

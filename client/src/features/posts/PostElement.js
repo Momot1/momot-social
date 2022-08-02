@@ -74,6 +74,7 @@ function PostElement({ post }) {
   return (
     <div>
       <Link to={`/${post.username}/posts`}>{post.username}</Link>
+      <img src={post.image_url} alt={post.title} />
       <h4>{post.title}</h4>
       <p>{post.post}</p>
       {user ? userLoggedIn() : null}

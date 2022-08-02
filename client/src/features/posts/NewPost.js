@@ -15,17 +15,27 @@ function NewPost() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  console.log(formData.image);
+
   function onPostSubmit(e) {
     e.preventDefault();
+    const image = e.target.children[2].children[0].files[0];
 
-    console.log(e.target.children[2].children[0].value);
-    // fetch("/posts", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((resp) => resp.json())
-    //   .then((post) => dispatch(postAdded(post)));
+    // console.log(image);
+
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("post", formData.post);
+    data.append("image", image);
+    console.log(data);
+    // console.log(e.target.children[2].children[0].value);
+    fetch("/posts", {
+      method: "POST",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((post) => dispatch(postAdded(post)))
+      .catch((error) => console.log(error));
   }
 
   return (
@@ -44,7 +54,7 @@ function NewPost() {
           <input type="text" name="post" value={formData.post} onChange={updateFormData} className="form-control" />
         </div>
         <div className="input-group mb-3">
-          <input type="file" multiple />
+          <input type="file" name="image" accept="image/*" />
         </div>
         <button type="submit" className="btn btn-lg btn-secondary">
           Post
