@@ -1,0 +1,12 @@
+#home-container{
+    width: 50%;
+    margin-left: 25%;
+    padding-left: 5em;
+    padding-top: 10px;
+    padding-right: 5em;
+    text-align: center;
+}
+
+.post-image{
+    max-width: calc(50vw - 10em);
+}

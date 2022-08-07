@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { postAdded } from "./postSlicer";
+import "./css/newPost.css";
 
 function NewPost() {
   const [formData, setFormData] = useState({ title: "", post: "" });
@@ -39,7 +40,7 @@ function NewPost() {
   }
 
   return (
-    <div>
+    <div id="new-post-container">
       <form onSubmit={onPostSubmit}>
         <div className="input-group mb-3">
           <span className="input-group-text" aria-label="title">

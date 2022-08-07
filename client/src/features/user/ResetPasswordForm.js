@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import "./css/forgotPassword.css";
 
 function ResetPasswordForm() {
   const token = useParams();
@@ -42,7 +43,7 @@ function ResetPasswordForm() {
   }
 
   return (
-    <div>
+    <div className="forgot-password-container">
       <form onSubmit={handlePasswordReset} className="needs-validation" noValidate>
         <div className="input-group mb-3">
           <span className="input-group-text" aria-label="password">

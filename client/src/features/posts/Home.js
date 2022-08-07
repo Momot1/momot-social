@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostElement from "./PostElement";
 import { useHistory } from "react-router-dom";
+import "./css/home.css";
 
 function Home() {
   const user = useSelector((state) => state.users.user);
@@ -29,8 +30,10 @@ function Home() {
   }
 
   return (
-    <div>
-      <button onClick={handleNewPostButtonClick}>New Post</button>
+    <div id="home-container">
+      <button onClick={handleNewPostButtonClick} className="btn btn-lg btn-secondary">
+        New Post
+      </button>
       {postElements}
     </div>
   );

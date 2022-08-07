@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./css/forgotPassword.css";
 
 function ForgotPassword() {
   const history = useHistory();
@@ -22,13 +23,15 @@ function ForgotPassword() {
   }
 
   return (
-    <div>
+    <div className="forgot-password-container">
       <form id="forgot-password-form" onSubmit={onPasswordReset}>
         <div className="input-group mb-3">
           <span className="input-group-text">Please enter your email address: </span>
           <input className="form-control" value={email} onChange={(e) => setEmail(e.target.value)}></input>
         </div>
-        <button type="submit">Send</button>
+        <button type="submit" className="btn btn-lg btn-secondary">
+          Send
+        </button>
       </form>
     </div>
   );

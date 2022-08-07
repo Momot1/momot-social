@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { postRemoved } from "./postSlicer";
+import "./css/home.css";
 
 function PostElement({ post }) {
   const history = useHistory();
@@ -74,7 +75,7 @@ function PostElement({ post }) {
   return (
     <div>
       <Link to={`/${post.username}/posts`}>{post.username}</Link>
-      <img src={post.image_url} alt={post.title} />
+      <img src={post.image_url} alt={post.title} className="post-image" />
       <h4>{post.title}</h4>
       <p>{post.post}</p>
       {user ? userLoggedIn() : null}
