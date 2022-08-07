@@ -27,13 +27,21 @@ function Navbar() {
           Hello, {user.first_name}
         </button>
         <div className="dropdown-menu" aria-describedby="nav-bar-dropdown">
-          <Link to={`/${user.username}/friends`}>My Friends</Link>
+          <Link to={`/${user.username}/friends`} data-toggle="collapse" data-target="#navbarToggleExternalContent" className="dropdown-item">
+            My Friends
+          </Link>
           <br />
-          <Link to={`/${user.username}/messages`}>Messages</Link>
+          <Link to={`/${user.username}/messages`} data-toggle="collapse" data-target="#navbarToggleExternalContent" className="dropdown-item">
+            Messages
+          </Link>
           <br />
-          <Link to={`/${user.username}/profile`}>My Profile</Link>
+          <Link to={`/${user.username}/profile`} data-toggle="collapse" data-target="#navbarToggleExternalContent" className="dropdown-item">
+            My Profile
+          </Link>
           <br />
-          <Link to="/logout">Logout</Link>
+          <Link to="/logout" data-toggle="collapse" data-target="#navbarToggleExternalContent" className="dropdown-item">
+            Logout
+          </Link>
         </div>
       </div>
     );
@@ -65,7 +73,7 @@ function Navbar() {
 
   function searchBar() {
     return (
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} id="search-form">
         <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
         <button type="submit">
           <i className="bi bi-search"></i>
@@ -78,19 +86,69 @@ function Navbar() {
     );
   }
 
-  return (
-    <div className="nav" id="nav-bar">
-      <div>{searchBar()}</div>
-      <NavLink exact to="/" className="nav-link btn btn-secondary btn-lg me-4 nav-link">
-        Home
-      </NavLink>
-      {user ? (
-        loggedInDropdown()
-      ) : (
-        <NavLink to="/login" className="nav-link btn btn-secondary btn-lg me-4 nav-link">
-          Login
+  function navLinks() {
+    return (
+      <>
+        <NavLink
+          exact
+          to="/"
+          className="nav-link btn btn-secondary btn-lg me-4 nav-link"
+          data-toggle="collapse"
+          data-target="#navbarToggleExternalContent"
+        >
+          Home
         </NavLink>
-      )}
+        {user ? (
+          loggedInDropdown()
+        ) : (
+          <NavLink
+            to="/login"
+            className="nav-link btn btn-secondary btn-lg me-4 nav-link"
+            data-toggle="collapse"
+            data-target="#navbarToggleExternalContent"
+          >
+            Login
+          </NavLink>
+        )}
+      </>
+    );
+  }
+
+  return (
+    <div>
+      <div className="nav" id="nav-bar">
+        <div>{searchBar()}</div>
+        {navLinks()}
+      </div>
+
+      <nav id="mobile-nav">
+        <div>{searchBar()}</div>
+        <nav
+          className="navbar-dark bg-dark"
+          style={{
+            width: "min-content",
+            position: "relative",
+            left: "calc(100% - 80px)",
+          }}
+        >
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span id="menu-button" className="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+        <div className="collapse tests" id="navbarToggleExternalContent">
+          <div className="bg-dark p-4  tests">
+            <div className="d-flex flex-column navbar">{navLinks()}</div>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }

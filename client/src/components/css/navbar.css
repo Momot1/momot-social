@@ -6,9 +6,51 @@
     color: rgb(0, 255, 0);
 }
 
-#nav-bar{
+#nav-bar, #mobile-nav{
     display: flex;
     justify-content: end;
     padding: 0.7rem 1.5rem;
     background-color:rgb(187, 0, 0);
+    height: 70px;
+}
+
+#mobile-nav{
+    display: none;
+}
+
+@media (max-width: 599px){
+    #nav-bar{
+        display: none;
+    }
+
+    #mobile-nav{
+        display: block;
+        position: relative;
+    }
+
+    .navbar{
+        z-index: 2;
+    }
+
+    .navbar-toggler{
+        position: absolute;
+        background-color: black;
+        top: -25px;
+        left: 40px;
+    }
+
+    .tests{
+        width: 100vw;
+        height: calc(100vh - 67px);
+        /* background-color: black; */
+        margin-top: 13px;
+        position: absolute;
+        left: 0;
+    }
+
+    
+
+      /* .close-navbar-toggler.collapsed{
+        z-index:-1;
+      } */
 }

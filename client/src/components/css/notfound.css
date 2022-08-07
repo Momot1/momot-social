@@ -1,0 +1,12 @@
+#not-found-container{
+    background-color: antiquewhite;
+    min-height: calc(100vh - 70px);
+    text-align: center;
+    padding: 30px;
+}
+
+@media screen and (max-width: 480px) {
+    #not-found-container{
+        padding: 0;
+    }
+}
