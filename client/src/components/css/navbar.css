@@ -54,3 +54,19 @@
         z-index:-1;
       }
 }
+
+@media (max-width: 300px){
+    #mobile-nav{
+        padding: 0;
+        padding-top: 5px;
+    }
+
+    .tests{
+        margin-top: 2px;
+    }
+
+    .navbar-toggler{
+        top: -45px;
+        left: 22px;
+    }
+}
