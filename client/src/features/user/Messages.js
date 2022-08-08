@@ -21,7 +21,9 @@ function Messages() {
 
   return (
     <div>
-      <button onClick={handleNewMessageClick}>New Message</button>
+      <button onClick={handleNewMessageClick} className="btn btn-secondary">
+        New Message
+      </button>
       {chatElements}
     </div>
   );

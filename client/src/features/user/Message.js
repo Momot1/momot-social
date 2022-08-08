@@ -49,8 +49,10 @@ function Message() {
     <div>
       {messageElements}
       <form onSubmit={onChatSend}>
-        <input value={message} onChange={(e) => setMessage(e.target.value)} />
-        <button type="submit">Send</button>
+        <input value={message} onChange={(e) => setMessage(e.target.value)} required />
+        <button type="submit" className="btn btn-sm btn-primary">
+          Send
+        </button>
       </form>
     </div>
   );

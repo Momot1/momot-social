@@ -24,14 +24,22 @@ function UserFriends() {
       {user.id === friend.sender_id ? (
         <div>
           <h4>{friend.friend.username}</h4>
-          <button disabled>Request Sent</button>
-          <button onClick={() => handleRemoveFriendClick(friend.friend.id)}>Retract Request</button>
+          <button disabled className="btn btn-secondary">
+            Request Sent
+          </button>
+          <button onClick={() => handleRemoveFriendClick(friend.friend.id)} className="btn btn-secondary">
+            Retract Request
+          </button>
         </div>
       ) : (
         <div>
           <h4>{friend.friend.username}</h4>
-          <button onClick={() => handleConfirmFriendClick(friend.id)}>Confirm</button>
-          <button onClick={() => handleRemoveFriendClick(friend.friend.id)}>Deny</button>
+          <button onClick={() => handleConfirmFriendClick(friend.id)} className="btn btn-secondary">
+            Confirm
+          </button>
+          <button onClick={() => handleRemoveFriendClick(friend.friend.id)} className="btn btn-secondary">
+            Deny
+          </button>
         </div>
       )}
     </div>
@@ -60,8 +68,10 @@ function UserFriends() {
     <div>
       <h4>My Friends</h4>
       {friendElements}
+      {friendElements.length === 0 ? <p>Sorry, you have no friends</p> : null}
       <h4>Pending friendships</h4>
       {pendingFriendElements}
+      {pendingFriendElements.length === 0 ? <p>No current pending friendships</p> : null}
     </div>
   );
 }

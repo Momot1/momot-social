@@ -42,15 +42,15 @@
     .tests{
         width: 100vw;
         height: calc(100vh - 67px);
-        /* background-color: black; */
         margin-top: 13px;
         position: absolute;
         left: 0;
+        z-index: 2;
     }
 
     
 
-      /* .close-navbar-toggler.collapsed{
+      .close-navbar-toggler.collapsed{
         z-index:-1;
-      } */
+      }
 }

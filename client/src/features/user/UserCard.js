@@ -52,12 +52,24 @@ function UserCard({ user }) {
 
   function checkFriends() {
     if (loggedUser.friends.confirmed.find((friend) => friend.id === user.id)) {
-      return <button onClick={handleRemoveFriendClick}>Remove Friend</button>;
+      return (
+        <button onClick={handleRemoveFriendClick} className="btn btn-secondary">
+          Remove Friend
+        </button>
+      );
     } else {
       if (loggedUser.friends.pending.find((friend) => friend.friend.id === user.id)) {
-        return <button disabled>Request Sent</button>;
+        return (
+          <button disabled className="btn btn-secondary">
+            Request Sent
+          </button>
+        );
       } else {
-        return <button onClick={handleAddFriendClick}>Add Friend</button>;
+        return (
+          <button onClick={handleAddFriendClick} className="btn btn-secondary">
+            Add Friend
+          </button>
+        );
       }
     }
   }
@@ -68,7 +80,9 @@ function UserCard({ user }) {
         {user.first_name} {user.last_name}
       </h4>
       <p>@{user.username}</p>
-      <button onClick={handleMessageClick}>Message</button>
+      <button onClick={handleMessageClick} className="btn btn-secondary">
+        Message
+      </button>
       {checkFriends()}
     </div>
   );

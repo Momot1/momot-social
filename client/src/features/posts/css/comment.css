@@ -1,0 +1,9 @@
+.comment-title{
+    display: inline;
+}
+
+.comment-body{
+    display: inline;
+    padding: 3px;
+    font-size: 1.2em;
+}
