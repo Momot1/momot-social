@@ -1,7 +1,7 @@
 #login-div{
     background-color: antiquewhite;
     border-radius: 10px;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
     padding: 5em;
     width: 50%;
     margin-left: 25%;

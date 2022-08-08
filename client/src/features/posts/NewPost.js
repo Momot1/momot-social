@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { postAdded } from "./postSlicer";
 import "./css/newPost.css";
 
@@ -7,6 +8,7 @@ function NewPost() {
   const [formData, setFormData] = useState({ title: "", post: "" });
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   if (!user) {
     return <div>Loading...</div>;
@@ -15,8 +17,6 @@ function NewPost() {
   function updateFormData(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-
-  console.log(formData.image);
 
   function onPostSubmit(e) {
     e.preventDefault();
@@ -28,14 +28,17 @@ function NewPost() {
     data.append("title", formData.title);
     data.append("post", formData.post);
     data.append("image", image);
-    console.log(data);
+
     // console.log(e.target.children[2].children[0].value);
     fetch("/posts", {
       method: "POST",
       body: data,
     })
       .then((resp) => resp.json())
-      .then((post) => dispatch(postAdded(post)))
+      .then((post) => {
+        dispatch(postAdded(post));
+        history.push(`/posts/${post.id}`);
+      })
       .catch((error) => console.log(error));
   }
 

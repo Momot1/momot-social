@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "./css/profile.css";
 
 function Profile() {
   const user = useSelector((state) => state.users.user);
@@ -16,7 +17,7 @@ function Profile() {
   }
 
   return (
-    <div>
+    <div id="profile-container">
       <h1>
         Profile for {user.first_name} {user.last_name}
       </h1>

@@ -3,7 +3,7 @@
     padding: 5em;
     width: 50%;
     margin-left: 25%;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
     border-radius: 10px;
     text-align: center;
 }
