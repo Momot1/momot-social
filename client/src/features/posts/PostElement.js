@@ -66,7 +66,7 @@ function PostElement({ post }) {
 
   function userLoggedIn() {
     return (
-      <button onClick={handleLikeClick}>
+      <button onClick={handleLikeClick} className="btn btn-sm btn-secondary">
         <i className={isLiked ? "bi-hand-thumbs-up-fill" : "bi bi-hand-thumbs-up"}></i>
       </button>
     );
@@ -79,11 +79,11 @@ function PostElement({ post }) {
       <h4>{post.title}</h4>
       <p>{post.post}</p>
       {user ? userLoggedIn() : null}
-      <button onClick={handleCommentClick}>
+      <button onClick={handleCommentClick} className="btn btn-sm btn-secondary">
         <i className="bi bi-chat-square-text"></i>
       </button>
       {user && (user.id === post.user_id || user.is_admin) ? (
-        <button onClick={handleDeleteClick}>
+        <button onClick={handleDeleteClick} className="btn btn-sm btn-secondary">
           <i className="bi bi-trash"></i>
         </button>
       ) : null}

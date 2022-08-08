@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentElement from "./CommentElement";
+import PostElement from "./PostElement";
+import "./css/post.css";
 
 function PostPage() {
   const id = useParams();
@@ -45,14 +47,16 @@ function PostPage() {
   }
 
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <p>{post.post}</p>
+    <div id="post-container">
+      <PostElement post={post} />
+
       {comments.length > 0 ? comments : <p>Currently no comments, be the first to comment!</p>}
       {user ? (
         <form onSubmit={handleCommentSubmit}>
           <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
-          <button type="submit">Comment</button>
+          <button type="submit" className="btn btn-sm btn-secondary">
+            Comment
+          </button>
         </form>
       ) : (
         <p>

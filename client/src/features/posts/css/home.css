@@ -8,5 +8,52 @@
 }
 
 .post-image{
-    max-width: calc(50vw - 10em);
+    max-width: 100%;
+}
+
+@media (max-width: 2000px) {
+    #home-container {
+        width: 60%;
+        margin-left: 20%;
+    }
+}
+
+
+@media (max-width: 1500px) {
+    #home-container {
+        width: 70%;
+        margin-left: 15%;
+    }
+}
+
+
+@media (max-width: 1250px) {
+    #home-container {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    #home-container {
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+
+
+@media (max-width: 750px) {
+    #home-container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px){
+    #home-container{
+        width: 100%;
+        margin-left: 0;
+        padding: 0;
+    }
 }

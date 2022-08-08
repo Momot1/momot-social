@@ -21,7 +21,7 @@ function CommentElement({ comment, removeComment, ownerId }) {
       <h5>@{comment.username} -</h5>
       <p>{comment.comment}</p>
       {user && (comment.username === user.username || user.is_admin || user.id === ownerId) ? (
-        <button onClick={handleCommentDelete}>
+        <button onClick={handleCommentDelete} className="btn btn-sm btn-secondary">
           <i className="bi bi-trash"></i>
         </button>
       ) : null}

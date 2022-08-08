@@ -7,3 +7,50 @@
     height: calc(100vh - 70px);
     padding: 5em;
 }
+
+@media (max-width: 2000px) {
+    #new-post-container {
+        width: 60%;
+        margin-left: 20%;
+    }
+}
+
+
+@media (max-width: 1500px) {
+    #new-post-container {
+        width: 70%;
+        margin-left: 15%;
+    }
+}
+
+
+@media (max-width: 1250px) {
+    #new-post-container {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    #new-post-container {
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+
+
+@media (max-width: 750px) {
+    #new-post-container {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    #new-post-container {
+        width: 100%;
+        margin-left: 0;
+        padding: 5px;
+    }
+}
