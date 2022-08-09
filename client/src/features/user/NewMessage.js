@@ -15,7 +15,7 @@ function NewMessage() {
 
   const filteredFriends = user.friends.confirmed.filter((friend) => friend.username.includes(search));
 
-  const filteredFriendsElements = filteredFriends.map((friend) => <UserCard user={friend} />);
+  const filteredFriendsElements = filteredFriends.map((friend) => <UserCard user={friend} key={friend.id} />);
 
   return (
     <div>

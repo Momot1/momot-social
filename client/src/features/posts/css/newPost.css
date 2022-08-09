@@ -8,6 +8,15 @@
     padding: 5em;
 }
 
+#inputTag{
+    display: none;
+}
+
+#picture-label{
+    cursor: pointer;
+    /* background-color: aliceblue; */
+}
+
 @media (max-width: 2000px) {
     #new-post-container {
         width: 60%;

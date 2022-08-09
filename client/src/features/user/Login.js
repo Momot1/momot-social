@@ -65,6 +65,7 @@ function Login() {
             onChange={updateFormData}
             className="form-control"
             aria-describedby="Username"
+            autoComplete="username"
             required
           />
         </div>
@@ -80,6 +81,7 @@ function Login() {
             onChange={updateFormData}
             className="form-control"
             aria-describedby="Password"
+            autoComplete="current-password"
             required
           />
         </div>

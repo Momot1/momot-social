@@ -8,6 +8,18 @@
     text-align: center;
 }
 
+#login-div div {
+    flex-direction: column;
+}
+
+#login-div span {
+    width: 100%;
+}
+
+#login-div input {
+    width: 100%;
+}
+
 @media (max-width: 2000px) {
     #login-div {
         width: 60%;

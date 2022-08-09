@@ -26,7 +26,7 @@ function ForgotPassword() {
     <div className="forgot-password-container">
       <form id="forgot-password-form" onSubmit={onPasswordReset}>
         <div className="input-group mb-3">
-          <span className="input-group-text">Please enter your email address: </span>
+          <span className="input-group-text">Please enter your email address</span>
           <input className="form-control" value={email} onChange={(e) => setEmail(e.target.value)}></input>
         </div>
         <button type="submit" className="btn btn-lg btn-secondary">

@@ -73,9 +73,9 @@ function Navbar() {
 
   function searchBar() {
     return (
-      <form onSubmit={handleSearch} id="search-form">
+      <form onSubmit={handleSearch} className="search-form">
         <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
-        <button type="submit">
+        <button type="submit" className="btn btn-secondary btn-sm">
           <i className="bi bi-search"></i>
         </button>
         <select>
@@ -122,7 +122,6 @@ function Navbar() {
       </div>
 
       <nav id="mobile-nav">
-        <div>{searchBar()}</div>
         <nav
           className="navbar-dark bg-dark"
           style={{
@@ -145,7 +144,10 @@ function Navbar() {
         </nav>
         <div className="collapse tests" id="navbarToggleExternalContent">
           <div className="bg-dark p-4  tests">
-            <div className="d-flex flex-column navbar">{navLinks()}</div>
+            <div className="d-flex flex-column navbar">
+              {navLinks()}
+              {searchBar()}
+            </div>
           </div>
         </div>
       </nav>

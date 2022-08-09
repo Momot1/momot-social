@@ -66,12 +66,21 @@ function ChangePassword() {
             onChange={updateFormData}
             name="old_password"
             type="password"
+            autoComplete="current-password"
             required
           ></input>
         </div>
         <div className="input-group mb-3">
           <span className="input-group-text">New Password</span>
-          <input className="form-control" value={formData.password} onChange={updateFormData} name="password" type="password" required></input>
+          <input
+            className="form-control"
+            value={formData.password}
+            onChange={updateFormData}
+            name="password"
+            type="password"
+            autoComplete="new-password"
+            required
+          ></input>
         </div>
         <div className="input-group mb-3">
           <span className="input-group-text">Confirm New Password</span>
@@ -81,6 +90,7 @@ function ChangePassword() {
             onChange={updateFormData}
             name="password_confirmation"
             type="password"
+            autoComplete="new-password"
             required
           ></input>
         </div>

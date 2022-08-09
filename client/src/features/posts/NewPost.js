@@ -58,9 +58,12 @@ function NewPost() {
           <input type="text" name="post" value={formData.post} onChange={updateFormData} className="form-control" />
         </div>
         <div className="input-group mb-3">
-          <input type="file" name="image" accept="image/*" />
+          <label htmlFor="inputTag" id="picture-label" className="btn btn-secondary">
+            Select image
+            <input id="inputTag" type="file" name="image" accept="image/*" />
+          </label>
         </div>
-        <button type="submit" className="btn btn-lg btn-secondary">
+        <button type="submit" className="btn btn-secondary">
           Post
         </button>
       </form>

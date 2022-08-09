@@ -14,7 +14,7 @@ function UserPosts() {
       .then(setPosts);
   }, []);
 
-  const postElements = posts.map((post) => <PostElement post={post} />);
+  const postElements = posts.map((post) => <PostElement post={post} key={post.id} />);
 
   return <div>{postElements}</div>;
 }

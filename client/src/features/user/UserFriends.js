@@ -20,7 +20,7 @@ function UserFriends() {
 
   const friendElements = friends.map((friend) => <UserCard user={friend} key={friend.id} />);
   const pendingFriendElements = pendingFriends.map((friend) => (
-    <div>
+    <div key={friend.id}>
       {user.id === friend.sender_id ? (
         <div>
           <h4>{friend.friend.username}</h4>
