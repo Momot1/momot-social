@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PostElement from "./PostElement";
+import "./css/home.css";
 
 function SearchedPosts() {
   const params = useParams();
@@ -14,7 +15,7 @@ function SearchedPosts() {
     return <div>There are no posts matching the search of {params.search}</div>;
   }
 
-  return <div>{postElements}</div>;
+  return <div className="home-container">{postElements}</div>;
 }
 
 export default SearchedPosts;

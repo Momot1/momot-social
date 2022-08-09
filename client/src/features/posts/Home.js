@@ -30,7 +30,7 @@ function Home() {
   }
 
   return (
-    <div id="home-container">
+    <div className="home-container">
       <button onClick={handleNewPostButtonClick} className="btn btn-lg btn-secondary">
         New Post
       </button>

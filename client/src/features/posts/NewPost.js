@@ -20,9 +20,10 @@ function NewPost() {
 
   function onPostSubmit(e) {
     e.preventDefault();
-    const image = e.target.children[2].children[0].files[0];
+    // console.log(e.target.children[2].children[0].children[0].files[0]);
+    const image = e.target.children[2].children[0].children[0].files[0];
 
-    // console.log(image);
+    console.log(image);
 
     const data = new FormData();
     data.append("title", formData.title);

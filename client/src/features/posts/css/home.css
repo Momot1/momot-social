@@ -1,4 +1,4 @@
-#home-container{
+.home-container{
     width: 50%;
     margin-left: 25%;
     padding-left: 5em;
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 2000px) {
-    #home-container {
+    .home-container {
         width: 60%;
         margin-left: 20%;
     }
@@ -20,7 +20,7 @@
 
 
 @media (max-width: 1500px) {
-    #home-container {
+    .home-container {
         width: 70%;
         margin-left: 15%;
     }
@@ -28,7 +28,7 @@
 
 
 @media (max-width: 1250px) {
-    #home-container {
+    .home-container {
         width: 80%;
         margin-left: 10%;
     }
@@ -36,7 +36,7 @@
 
 
 @media (max-width: 1000px) {
-    #home-container {
+    .home-container {
         width: 90%;
         margin-left: 5%;
     }
@@ -45,13 +45,13 @@
 
 
 @media (max-width: 750px) {
-    #home-container {
+    .home-container {
         padding: 0;
     }
 }
 
 @media (max-width: 600px){
-    #home-container{
+    .home-container{
         width: 100%;
         margin-left: 0;
         padding: 0;
