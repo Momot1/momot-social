@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import "./css/changePassword.css";
 
 function ChangePassword() {
   const user = useSelector((state) => state.users.user);
@@ -56,8 +57,10 @@ function ChangePassword() {
   ));
 
   return (
-    <div>
+    <div id="change-password-container">
+      <h2>Change Password</h2>
       <form className="needs-validation" noValidate onSubmit={onChangePassword}>
+        <input style={{ display: "none" }} autoComplete="username" />
         <div className="input-group mb-3">
           <span className="input-group-text">Old Password</span>
           <input
@@ -94,7 +97,9 @@ function ChangePassword() {
             required
           ></input>
         </div>
-        <button type="submit">Change</button>
+        <button type="submit" className="btn btn-secondary">
+          Change
+        </button>
       </form>
       {errors.errors.length > 0 ? errorElements : null}
     </div>

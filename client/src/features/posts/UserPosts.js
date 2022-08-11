@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PostElement from "./PostElement";
+import "./css/home.css";
 
 function UserPosts() {
   const { username } = useParams();
@@ -16,7 +17,7 @@ function UserPosts() {
 
   const postElements = posts.map((post) => <PostElement post={post} key={post.id} />);
 
-  return <div>{postElements}</div>;
+  return <div className="home-container">{postElements}</div>;
 }
 
 export default UserPosts;
