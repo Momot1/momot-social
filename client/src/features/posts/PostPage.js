@@ -52,9 +52,9 @@ function PostPage() {
 
       {comments.length > 0 ? comments : <p>Currently no comments, be the first to comment!</p>}
       {user ? (
-        <form onSubmit={handleCommentSubmit}>
-          <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
-          <button type="submit" className="btn btn-sm btn-secondary">
+        <form onSubmit={handleCommentSubmit} id="comment-form">
+          <textarea id="comment-textbox" rows="4" placeholder="Comment here" value={comment} onChange={(e) => setComment(e.target.value)} /> <br />
+          <button type="submit" className="btn btn btn-secondary w-100">
             Comment
           </button>
         </form>

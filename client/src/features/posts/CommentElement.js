@@ -18,11 +18,11 @@ function CommentElement({ comment, removeComment, ownerId }) {
   console.log(comment);
 
   return (
-    <div>
+    <div className="comment-element">
       <h5 className="comment-title">@{comment.username} -</h5>
       <p className="comment-body">{comment.comment}</p>
       {user && (comment.username === user.username || user.is_admin || user.id === ownerId) ? (
-        <button onClick={handleCommentDelete} className="btn btn-sm btn-secondary">
+        <button onClick={handleCommentDelete} className="btn btn-sm btn-secondary ">
           <i className="bi bi-trash"></i>
         </button>
       ) : null}

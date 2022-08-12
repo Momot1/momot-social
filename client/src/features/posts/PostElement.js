@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useRouteMatch } from "react-router-dom";
 import { postRemoved } from "./postSlicer";
 import "./css/home.css";
 
@@ -9,6 +9,7 @@ function PostElement({ post }) {
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(checkIfLiked);
+  const location = useRouteMatch();
 
   function handleCommentClick() {
     history.push(`/posts/${post.id}`);
@@ -50,8 +51,6 @@ function PostElement({ post }) {
           setIsLiked(false);
         });
     }
-
-    // setIsLiked(!isLiked);
   }
 
   function handleDeleteClick() {
@@ -73,15 +72,20 @@ function PostElement({ post }) {
   }
 
   return (
-    <div>
-      <Link to={`/${post.username}/posts`}>{post.username}</Link>
+    <div className="post-elements">
+      <Link to={`/${post.username}/posts`} className="post-username">
+        @{post.username}
+      </Link>
       <img src={post.image_url} alt={post.title} className="post-image" />
       <h4>{post.title}</h4>
       <p>{post.post}</p>
       {user ? userLoggedIn() : null}
-      <button onClick={handleCommentClick} className="btn btn-sm btn-secondary">
-        <i className="bi bi-chat-square-text"></i>
-      </button>
+      {location.path !== "/posts/:id" ? (
+        <button onClick={handleCommentClick} className="btn btn-sm btn-secondary">
+          <i className="bi bi-chat-square-text"></i>
+        </button>
+      ) : null}
+
       {user && (user.id === post.user_id || user.is_admin) ? (
         <button onClick={handleDeleteClick} className="btn btn-sm btn-secondary">
           <i className="bi bi-trash"></i>

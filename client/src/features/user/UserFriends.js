@@ -1,6 +1,7 @@
 import React from "react";
 import UserCard from "./UserCard";
 import { useSelector, useDispatch } from "react-redux";
+import "./css/userFriends.css";
 
 function UserFriends() {
   const user = useSelector((state) => state.users.user);
@@ -65,7 +66,7 @@ function UserFriends() {
   }
 
   return (
-    <div>
+    <div id="friends-container">
       <h4>My Friends</h4>
       {friendElements}
       {friendElements.length === 0 ? <p>Sorry, you have no friends</p> : null}

@@ -7,3 +7,14 @@
     padding: 3px;
     font-size: 1.2em;
 }
+
+.comment-element{
+    margin: 10px 0 10px 0;
+}
+
+/* #comment-form input{
+    width: 100%;
+    line-height: 2em;
+    
+    height: 200px;
+} */
