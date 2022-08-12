@@ -74,11 +74,14 @@ function Navbar() {
   function searchBar() {
     return (
       <form onSubmit={handleSearch} className="search-form">
-        <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
-        <button type="submit" className="btn btn-secondary btn-sm">
+        <div className="search-bar">
+          <input value={search} onChange={(e) => setSearch(e.target.value)} className="search-bar"></input>
+        </div>
+
+        <button type="submit" className="btn btn-secondary btn-lg search-button">
           <i className="bi bi-search"></i>
         </button>
-        <select>
+        <select className="btn-secondary search-select">
           <option value="posts">Posts</option>
           <option value="users">Users</option>
         </select>
@@ -92,8 +95,9 @@ function Navbar() {
         <NavLink
           exact
           to="/"
-          className="nav-link btn btn-secondary btn-lg me-4 nav-link"
+          className="nav-link btn btn-secondary btn-lg me-4 nav-link nav-buttons"
           data-toggle="collapse"
+          id="home-button"
           data-target="#navbarToggleExternalContent"
         >
           Home
@@ -103,7 +107,7 @@ function Navbar() {
         ) : (
           <NavLink
             to="/login"
-            className="nav-link btn btn-secondary btn-lg me-4 nav-link"
+            className="nav-link btn btn-secondary btn-lg me-4 nav-link nav-buttons"
             data-toggle="collapse"
             data-target="#navbarToggleExternalContent"
           >
@@ -122,6 +126,7 @@ function Navbar() {
       </div>
 
       <nav id="mobile-nav">
+        {searchBar()}
         <nav
           className="navbar-dark bg-dark"
           style={{
@@ -144,9 +149,8 @@ function Navbar() {
         </nav>
         <div className="collapse tests" id="navbarToggleExternalContent">
           <div className="bg-dark p-4  tests">
-            <div className="d-flex flex-column navbar">
+            <div className="d-flex flex-column navbar" id="expanded-mobile-dropdown">
               {navLinks()}
-              {searchBar()}
             </div>
           </div>
         </div>
