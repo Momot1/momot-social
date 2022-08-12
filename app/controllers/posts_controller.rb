@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     skip_before_action :authorized, only: [:index, :search, :show]
     def index
-        render json: Post.all
+        render json: Post.order("created_at DESC")
     end
 
     def show
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     end
 
     def search
-        posts = Post.where("title LIKE ?", "%" + params[:search] + "%")
+        posts = Post.where("title LIKE ?", "%" + params[:search] + "%").order("created_at DESC")
         render json: posts
     end
 

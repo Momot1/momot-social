@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CommentElement from "./CommentElement";
 import PostElement from "./PostElement";
+import { commentAdded, commentRemoved } from "./postSlicer";
 import "./css/post.css";
 
 function PostPage() {
   const id = useParams();
 
   const user = useSelector((state) => state.users.user);
+  const post = useSelector((state) => state.posts.posts.find((post) => post.id == id.id));
 
-  const [post, setPost] = useState(null);
+  // const [post, setPost] = useState(null);
   const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetch(`/posts/${id.id}`)
-      .then((resp) => resp.json())
-      .then(setPost);
-  }, []);
+  // const post = posts.find((post) => post.id == id.id);
+
+  // console.log(testPost);
+
+  // useEffect(() => {
+  //   fetch(`/posts/${id.id}`)
+  //     .then((resp) => resp.json())
+  //     .then(setPost);
+  // }, [posts]);
 
   if (!post) {
     return <div>Loading...</div>;
@@ -25,7 +32,9 @@ function PostPage() {
 
   function removeComment(id) {
     const filteredComments = post.comments.filter((comment) => comment.id !== id);
-    setPost({ ...post, comments: filteredComments });
+    dispatch(commentRemoved(post, id));
+    const comments_count = post.comments_count - 1;
+    // setPost({ ...post, comments: filteredComments, comments_count: comments_count });
   }
 
   const comments = post.comments.map((comment) => (
@@ -40,8 +49,9 @@ function PostPage() {
       body: JSON.stringify({ comment: comment, user_id: user.id, post_id: post.id }),
     })
       .then((resp) => resp.json())
-      .then((post) => {
-        setPost(post);
+      .then((comment) => {
+        // setPost(post);
+        dispatch(commentAdded({ id: post.id, comment: comment }));
         setComment("");
       });
   }

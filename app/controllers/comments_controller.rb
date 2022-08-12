@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
     def create
         post = Post.find(params[:post_id])
-        post.comments.create(user_id: params[:user_id], comment: params[:comment])
-        render json: post, status: :created
+        comment = post.comments.create(user_id: params[:user_id], comment: params[:comment])
+        render json: comment, status: :created
     end
 
     def destroy

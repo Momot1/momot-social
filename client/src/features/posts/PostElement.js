@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link, useRouteMatch } from "react-router-dom";
-import { postRemoved } from "./postSlicer";
+import { postRemoved, likeAdded, likeRemoved } from "./postSlicer";
 import "./css/home.css";
 
 function PostElement({ post }) {
@@ -37,7 +37,7 @@ function PostElement({ post }) {
         .then((resp) => resp.json())
         .then((user) => {
           dispatch({ type: "update chats", payload: user });
-          console.log(user);
+          dispatch(likeAdded(post));
           setIsLiked(true);
         });
     } else {
@@ -48,6 +48,7 @@ function PostElement({ post }) {
         .then((resp) => resp.json())
         .then((user) => {
           dispatch({ type: "update chats", payload: user });
+          dispatch(likeRemoved(post));
           setIsLiked(false);
         });
     }
@@ -79,6 +80,9 @@ function PostElement({ post }) {
       <img src={post.image_url} alt={post.title} className="post-image" />
       <h4>{post.title}</h4>
       <p>{post.post}</p>
+      <p>
+        {post.likes} likes. {post.comments_count} comments.
+      </p>
       {user ? userLoggedIn() : null}
       {location.path !== "/posts/:id" ? (
         <button onClick={handleCommentClick} className="btn btn-sm btn-secondary">

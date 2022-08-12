@@ -16,7 +16,7 @@ const postsSlice = createSlice({
   },
   reducers: {
     postAdded(state, action) {
-      state.posts.push(action.payload);
+      state.posts.unshift(action.payload);
     },
     postRemoved(state, action) {
       state.posts.splice(
@@ -26,6 +26,25 @@ const postsSlice = createSlice({
     },
     searchedPost(state, action) {
       state.searchedPosts = action.payload;
+    },
+    likeAdded(state, action) {
+      let post = state.posts.find((post) => post.id === action.payload.id);
+      post.likes = post.likes + 1;
+    },
+    likeRemoved(state, action) {
+      let post = state.posts.find((post) => post.id === action.payload.id);
+      post.likes = post.likes - 1;
+    },
+    commentAdded(state, action) {
+      let post = state.posts.find((post) => post.id == action.payload.id);
+      state.posts.find((post) => post.id == action.payload.id).comments.push(action.payload.comment);
+      // post.comments.push(action.payload.comment);
+      post.comments_count = post.comments_count + 1;
+    },
+    commentRemoved(state, action) {
+      let post = state.posts.find((post) => post.id === action.payload.id);
+      post.comments.splice(post.comments.findIndex((comment) => comment.id === action.payload.id));
+      post.comments_count = post.comments_count - 1;
     },
   },
   extraReducers: {
@@ -39,6 +58,6 @@ const postsSlice = createSlice({
   },
 });
 
-export const { postAdded, postRemoved, searchedPost } = postsSlice.actions;
+export const { postAdded, postRemoved, searchedPost, likeAdded, likeRemoved, commentAdded, commentRemoved } = postsSlice.actions;
 
 export default postsSlice.reducer;
