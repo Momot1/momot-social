@@ -24,9 +24,10 @@ html {
 
 .search-bar{
     height: 48px;
-    font-size: 1.5em;
+    font-size: 1.2em;
     width: 400px;
-    margin-right: 95px;
+    position: absolute;
+    left: 10px;
 }
 
 #home-button{
@@ -35,43 +36,45 @@ html {
 
 .search-select{
     position: absolute;
-    right: 387px;
-    top: 20px;
+    /* right: 387px; */
+    left: 430px;
+    top: 10px;
+    min-width: fit-content;
     font-size: 1.2em;
+    height: 48px;
     
 }
 
 .search-button{
     position: absolute;
     top: 11px;
-    margin-left: 24px;
-    margin-right: 24px;
-    right: 285px;
+    /* margin-left: 24px; */
+    /* margin-right: 24px; */
+    /* right: 285px; */
+    left: 510px;
 }
 
 #mobile-nav{
     display: none;
 }
 
-@media screen and (max-width: 850px){
+@media screen and (max-width: 890px){
     #nav-bar{
         display: none;
     }
 
     .search-button{
         right: none;
-        width: 54px;
-        /* margin-left: 10px; */
-        left: 410px;
+        top: 10px;
+        left: 432px;
     }
 
     .search-select{
         right: none;
+        border-radius: 3px;
         top: none;
-        left: 347px;
-        width: 71px;
+        left: 350px;
         position: absolute;
-    
     }
 
     #mobile-nav{
@@ -85,7 +88,7 @@ html {
 
     .navbar-toggler{
         position: absolute;
-        top: -43px;
+        top: 3px;
         left: 37px;
         background-color: black;
     }
@@ -120,12 +123,13 @@ html {
 
     .search-button{
         position: absolute;
-        left: calc(100vw - 105px)
+        left: calc(100vw - 90px)
     }
 
     .search-select{
-        left: calc(100vw - 180px);
-        top: 83px;
+        left: 20px;
+        /* left: calc(100vw - 180px); */
+        top: 63px;
     }
 
     #mobile-nav{
@@ -133,7 +137,11 @@ html {
     }
 
     .navbar-toggler{
-        top: 20px;
+        top: 60px;
+        left: 30px;
+
+        /* height: 48px; */
+        /* left: calc(100vw - 105px); */
     }
 
     .tests{
@@ -145,3 +153,9 @@ html {
         overflow-x: hidden;
     }
 }
+/* 
+@media (overflow-y: hidden){
+    .navbar-toggler{
+        left: 30px;
+    }
+} */

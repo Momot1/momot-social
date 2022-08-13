@@ -74,18 +74,31 @@ function UserCard({ user }) {
     }
   }
 
-  return (
-    <div>
-      <h4>
-        {user.first_name} {user.last_name}
-      </h4>
-      <p>@{user.username}</p>
-      <button onClick={handleMessageClick} className="btn btn-secondary">
-        Message
-      </button>
-      {checkFriends()}
-    </div>
-  );
+  function userLogged() {
+    console.log(loggedUser);
+    if (loggedUser) {
+      return (
+        <div>
+          <h4>
+            {user.first_name} {user.last_name}
+          </h4>
+          <p>@{user.username}</p>
+          <button onClick={handleMessageClick} className="btn btn-secondary">
+            Message
+          </button>
+          {checkFriends()}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>yo</h1>
+        </div>
+      );
+    }
+  }
+
+  return <>{userLogged()}</>;
 }
 
 export default UserCard;
