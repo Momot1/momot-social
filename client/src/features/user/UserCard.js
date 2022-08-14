@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function UserCard({ user }) {
   const loggedUser = useSelector((state) => state.users.user);
@@ -82,7 +82,8 @@ function UserCard({ user }) {
           <h4>
             {user.first_name} {user.last_name}
           </h4>
-          <p>@{user.username}</p>
+          <Link to={`/${user.username}/posts`}>@{user.username}</Link>
+          <br />
           <button onClick={handleMessageClick} className="btn btn-secondary">
             Message
           </button>
@@ -92,7 +93,10 @@ function UserCard({ user }) {
     } else {
       return (
         <div>
-          <h1>yo</h1>
+          <h4>
+            {user.first_name} {user.last_name}
+          </h4>
+          <Link to={`/${user.username}/posts`}>@{user.username}</Link>
         </div>
       );
     }

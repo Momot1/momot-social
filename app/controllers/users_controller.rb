@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :confirm_email, :reset_password_send_email, :resetpassword, :search]
+    skip_before_action :authorized, only: [:create, :reset_password_send_email, :resetpassword, :search, :confirm_email]
 
     def create
         @user = User.create(user_params)
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
             user.confirmed = true
             user.confirm_token = nil
             user.save!(validate: false)
-            render json: {message: "Please sign in to continue"}
+            render json: {message: "Please sign in to continue"}, status: :ok
         else
             render json: {error: "That user does not exist"}, status: :unauthorized
         end

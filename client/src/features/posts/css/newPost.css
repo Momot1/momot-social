@@ -2,7 +2,7 @@
     background-color: antiquewhite;
     width: 50%;
     margin-left: 25%;
-    /* text-align: center; */
+    text-align: center;
     border-radius: 10px;
     min-height: calc(100vh - 70px);
     padding: 5em;
@@ -10,6 +10,22 @@
 
 #inputTag{
     display: none;
+}
+
+#new-post-container div {
+    flex-direction: column;
+}
+
+#new-post-container span {
+    width: 100%;
+}
+
+#new-post-container input {
+    width: 100%;
+}
+
+#new-post-container button {
+    width: 100%;
 }
 
 #picture-label{
