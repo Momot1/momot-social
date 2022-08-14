@@ -1,9 +1,15 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ConfirmAccount() {
   const token = useParams();
   const history = useHistory();
+  const user = useSelector((state) => state.users.user);
+
+  if (user) {
+    history.push("/");
+  }
 
   console.log(token);
 
