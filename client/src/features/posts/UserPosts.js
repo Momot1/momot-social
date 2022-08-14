@@ -14,7 +14,7 @@ function UserPosts() {
   return (
     <div className="home-container">
       <h2 style={{ textAlign: "center", textTransform: "uppercase" }}>@{username}'s posts</h2>
-      {postElements}
+      {postElements && postElements.length > 0 ? postElements : <h4>{username} does not have any posts</h4>}
     </div>
   );
 }

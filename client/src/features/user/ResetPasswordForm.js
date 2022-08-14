@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "./css/forgotPassword.css";
 
 function ResetPasswordForm() {
   const token = useParams();
+  const history = useHistory();
   const [formData, setFormData] = useState({
     password: "",
     password_confirmation: "",
@@ -34,17 +35,23 @@ function ResetPasswordForm() {
         body: JSON.stringify(formData),
       }).then((resp) => {
         if (resp.ok) {
-          resp.json().then(console.log);
+          resp.json().then((message) => {
+            history.push("/login");
+            alert(message.message);
+          });
         } else {
+          resp.json().then((error) => {
+            history.push("/forgot-password");
+            alert(error.message);
+          });
         }
       });
-      console.log(formData);
     }
   }
 
   return (
     <div className="forgot-password-container">
-      <form onSubmit={handlePasswordReset} className="needs-validation" noValidate>
+      <form onSubmit={handlePasswordReset} className="needs-validation" id="reset-password-form" noValidate>
         <div className="input-group mb-3">
           <span className="input-group-text" aria-label="password">
             Password

@@ -31,9 +31,12 @@ function Home() {
 
   return (
     <div className="home-container">
-      <button onClick={handleNewPostButtonClick} className="btn btn-lg btn-secondary">
-        New Post
-      </button>
+      <div id="new-post-button">
+        <button onClick={handleNewPostButtonClick} className="btn btn-lg btn-secondary">
+          New Post
+        </button>
+      </div>
+
       {postElements}
     </div>
   );

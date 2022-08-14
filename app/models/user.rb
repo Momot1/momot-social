@@ -6,12 +6,12 @@ class User < ApplicationRecord
     validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/ }
     validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
 
-    has_many :posts
-    has_many :comments
-    has_many :messages
-    has_many :likes
-    has_many :user_chats
-    has_many :chats, through: :user_chats
+    has_many :posts, dependent: :destroy
+    has_many :comments, dependent: :destroy
+    has_many :messages, dependent: :destroy
+    has_many :likes, dependent: :destroy
+    has_many :user_chats, dependent: :destroy
+    has_many :chats, through: :user_chats, dependent: :destroy
 
     has_many :friendships,
         ->(user) { FriendshipsQuery.both_ways(user_id: user.id) },

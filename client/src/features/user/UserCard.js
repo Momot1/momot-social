@@ -84,10 +84,14 @@ function UserCard({ user }) {
           </h4>
           <Link to={`/${user.username}/posts`}>@{user.username}</Link>
           <br />
-          <button onClick={handleMessageClick} className="btn btn-secondary">
-            Message
-          </button>
-          {checkFriends()}
+          {loggedUser.id !== user.id ? (
+            <>
+              <button onClick={handleMessageClick} className="btn btn-secondary">
+                Message
+              </button>
+              {checkFriends()}
+            </>
+          ) : null}
         </div>
       );
     } else {

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./css/forgotPassword.css";
 
 function ForgotPassword() {
   const history = useHistory();
   const [email, setEmail] = useState("");
+  const user = useSelector((state) => state.users.user);
+
+  if (user) {
+    history.push("/");
+  }
 
   function onPasswordReset(e) {
     e.preventDefault();

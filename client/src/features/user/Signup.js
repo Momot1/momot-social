@@ -131,6 +131,7 @@ function Signup() {
             onChange={updateFormData}
             placeholder="Username"
             type="text"
+            autoComplete="username"
             className="form-control"
             aria-describedby="username"
             required
@@ -146,6 +147,7 @@ function Signup() {
             onChange={updateFormData}
             placeholder="Password"
             type="password"
+            autoComplete="new-password"
             className="form-control"
             aria-describedby="password"
             required
@@ -160,6 +162,7 @@ function Signup() {
             value={formData.password_confirmation}
             onChange={updateFormData}
             placeholder="Password Confirmation"
+            autoComplete="new-password"
             type="password"
             className="form-control"
             aria-describedby="password_confirmation"
