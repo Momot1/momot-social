@@ -1,10 +1,6 @@
 #login-div{
     background-color: antiquewhite;
-    border-radius: 10px;
     min-height: calc(100vh - 70px);
-    padding: 5em;
-    width: 50%;
-    margin-left: 25%;
     text-align: center;
 }
 
@@ -20,50 +16,8 @@
     width: 100%;
 }
 
-@media (max-width: 2000px) {
-    #login-div {
-        width: 60%;
-        margin-left: 20%;
-    }
-}
-
-
-@media (max-width: 1500px) {
-    #login-div {
-        width: 70%;
-        margin-left: 15%;
-    }
-}
-
-
-@media (max-width: 1250px) {
-    #login-div {
-        width: 80%;
-        margin-left: 10%;
-    }
-}
-
-
-@media (max-width: 1000px) {
-    #login-div {
-        width: 90%;
-        margin-left: 5%;
-    }
-}
-
-
-
 @media (max-width: 750px) {
     #login-div {
         padding: 5px;
-    }
-}
-
-@media (max-width: 600px) {
-    #login-div {
-        width: 100%;
-        margin-left: 0;
-        padding: 5px;
-        border-radius: 0;
     }
 }

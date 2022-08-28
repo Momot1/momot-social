@@ -76,7 +76,7 @@ class UsersController < ApplicationController
                 end
                 
             else
-                render json: {message: "Your token has expired. Please click forgot my password to generate a new token."}, status: :unauthorized
+                render json: {message: "Your token has expired. Please fill out your email to generate a new token."}, status: :unauthorized
             end
         else
 
@@ -98,7 +98,7 @@ class UsersController < ApplicationController
         
         render json: user, include: "**"
     end
-
+    
     def add_friend
         user = User.find(session[:user_id])
         user.friendships.create(friend_id: params[:friend_id])

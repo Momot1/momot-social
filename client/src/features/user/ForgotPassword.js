@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./css/forgotPassword.css";
+import "../../css/container.css";
 
 function ForgotPassword() {
   const history = useHistory();
@@ -21,15 +22,15 @@ function ForgotPassword() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email }),
-    })
-      .then((resp) => resp.json())
-      .then((resp) => {});
+    });
+    // .then((resp) => resp.json())
+    // .then((resp) => {});
 
     history.push("/reset-password-message");
   }
 
   return (
-    <div className="forgot-password-container">
+    <div className="forgot-password-container div-container">
       <form id="forgot-password-form" onSubmit={onPasswordReset}>
         <div className="input-group mb-3">
           <span className="input-group-text">Please enter your email address</span>

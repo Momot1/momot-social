@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./css/forgotPassword.css";
 
 function ResetPasswordForm() {
@@ -10,6 +11,12 @@ function ResetPasswordForm() {
     password_confirmation: "",
     password_reset_token: token.password_reset_token,
   });
+
+  const user = useSelector((state) => state.users.user);
+
+  if (user) {
+    history.push("/");
+  }
 
   function updateForm(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });

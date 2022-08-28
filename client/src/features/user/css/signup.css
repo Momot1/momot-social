@@ -1,10 +1,6 @@
 #signup-div{
     background-color: antiquewhite;
-    padding: 5em;
-    width: 50%;
-    margin-left: 25%;
     min-height: calc(100vh - 70px);
-    border-radius: 10px;
     text-align: center;
 }
 
@@ -20,52 +16,8 @@
     width: 100%;
 }
 
-@media (max-width: 2000px) {
-    #signup-div {
-        width: 60%;
-        margin-left: 20%;
-    }
-}
-
-
-@media (max-width: 1500px) {
-    #signup-div {
-        width: 70%;
-        margin-left: 15%;
-    }
-}
-
-
-@media (max-width: 1250px) {
-    #signup-div {
-        width: 80%;
-        margin-left: 10%;
-    }
-}
-
-
-@media (max-width: 1000px) {
-    #signup-div {
-        width: 90%;
-        margin-left: 5%;
-    }
-}
-
-
-
 @media (max-width: 750px) {
     #signup-div {
         padding: 5px;
     }
-}
-
-@media (max-width: 600px) {
-    #signup-div {
-        width: 100%;
-        margin-left: 0;
-        padding: 5px;
-        border-radius: 0;
-    }
-
-    
 }

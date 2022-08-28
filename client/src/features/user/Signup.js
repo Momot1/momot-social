@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./css/signup.css";
+import "../../css/container.css";
 
 function Signup() {
   const history = useHistory();
@@ -60,7 +61,7 @@ function Signup() {
   ));
 
   return (
-    <div id="signup-div">
+    <div id="signup-div" className="div-container">
       {user ? <Redirect to="/" /> : null}
       <form onSubmit={handleSignup} autoComplete="disabled" className="needs-validation" noValidate>
         <div className="input-group mb-3">

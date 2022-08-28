@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import "./css/login.css";
+import "../../css/container.css";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -49,7 +50,7 @@ function Login() {
   }
 
   return (
-    <div id="login-div">
+    <div id="login-div" className="div-container">
       {user ? <Redirect to="/" /> : null}
       <form onSubmit={handleLogin} id="login-form" noValidate className="needs-validation">
         <div className="input-group mb-3">

@@ -75,7 +75,6 @@ function UserCard({ user }) {
   }
 
   function userLogged() {
-    console.log(loggedUser);
     if (loggedUser) {
       return (
         <div>

@@ -5,6 +5,7 @@ import CommentElement from "./CommentElement";
 import PostElement from "./PostElement";
 import { commentAdded, commentRemoved } from "./postSlicer";
 import "./css/post.css";
+import "../../css/container.css";
 
 function PostPage() {
   const id = useParams();
@@ -31,10 +32,7 @@ function PostPage() {
   }
 
   function removeComment(id) {
-    const filteredComments = post.comments.filter((comment) => comment.id !== id);
     dispatch(commentRemoved(post, id));
-    const comments_count = post.comments_count - 1;
-    // setPost({ ...post, comments: filteredComments, comments_count: comments_count });
   }
 
   const comments = post.comments.map((comment) => (
@@ -57,7 +55,7 @@ function PostPage() {
   }
 
   return (
-    <div id="post-container">
+    <div id="post-container" className="div-container">
       <PostElement post={post} />
 
       {comments.length > 0 ? comments : <p>Currently no comments, be the first to comment!</p>}

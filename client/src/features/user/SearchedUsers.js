@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserCard from "./UserCard";
+import "../../css/container.css";
 
 function SearchedUsers() {
   const users = useSelector((state) => state.users.searchedUsers);
@@ -15,7 +16,7 @@ function SearchedUsers() {
     return <div>No user results found for {params.search}</div>;
   }
 
-  return <div>{userElements}</div>;
+  return <div className="div-container">{userElements}</div>;
 }
 
 export default SearchedUsers;
