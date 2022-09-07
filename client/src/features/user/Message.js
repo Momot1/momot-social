@@ -40,7 +40,7 @@ function Message() {
   }
 
   return (
-    <div className="div-container message-container">
+    <div className="div-container">
       <h4>To: @{params.otheruser}</h4>
       {messageElements}
       <form onSubmit={onChatSend}>
