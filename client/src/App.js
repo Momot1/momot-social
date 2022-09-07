@@ -1,31 +1,10 @@
 // client/src/components/App.js
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Login from "./features/user/Login";
-import Home from "./features/posts/Home";
-import Navbar from "./components/Navbar";
-import Signup from "./features/user/Signup";
+import * as pages from "./imports";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Logout from "./features/user/Logout";
 import "./app.css";
-import ForgotPassword from "./features/user/ForgotPassword";
-import Profile from "./features/user/Profile";
-import ChangePassword from "./features/user/ChangePassword";
-import ConfirmAccount from "./features/user/ConfirmAccount";
-import ResetPasswordForm from "./features/user/ResetPasswordForm";
-import PasswordResetMessage from "./features/user/PasswordResetMessage";
-import PostPage from "./features/posts/PostPage";
 import { fetchPosts } from "./features/posts/postSlicer";
-import NewPost from "./features/posts/NewPost";
-import SearchedUsers from "./features/user/SearchedUsers";
-import UserFriends from "./features/user/UserFriends";
-import NotFound from "./components/NotFound";
-import Messages from "./features/user/Messages";
-import Message from "./features/user/Message";
-import SearchedPosts from "./features/posts/SearchedPosts";
-import ConfirmEmailMessage from "./features/user/ConfirmEmailMessage";
-import UserPosts from "./features/posts/UserPosts";
-import NewMessage from "./features/user/NewMessage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,86 +13,80 @@ function App() {
     fetch("/me").then((resp) => {
       if (resp.ok) {
         resp.json().then((user) => {
-          console.log(user);
           dispatch({ type: "login", payload: user });
         });
       }
     });
 
     dispatch(fetchPosts());
-    // fetch("/posts")
-    //   .then((resp) => resp.json())
-    //   .then((posts) => {
-    //     dispatch({ type: "setPosts", payload: posts });
-    //   });
   }, []);
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <pages.Navbar />
       <Switch>
         <Route exact path="/login">
-          <Login />
+          <pages.Login />
         </Route>
         <Route exact path="/signup">
-          <Signup />
+          <pages.Signup />
         </Route>
         <Route exact path="/logout">
-          <Logout />
+          <pages.Logout />
         </Route>
         <Route exact path="/forgot-password">
-          <ForgotPassword />
+          <pages.ForgotPassword />
         </Route>
         <Route exact path="/:username/profile">
-          <Profile />
+          <pages.Profile />
         </Route>
         <Route exact path="/:username/change-password">
-          <ChangePassword />
+          <pages.ChangePassword />
         </Route>
         <Route exact path="/:username/posts">
-          <UserPosts />
+          <pages.UserPosts />
         </Route>
         <Route exact path="/accounts/confirm/:confirm_token">
-          <ConfirmAccount />
+          <pages.ConfirmAccount />
         </Route>
         <Route exact path="/reset-password/:password_reset_token">
-          <ResetPasswordForm />
+          <pages.ResetPasswordForm />
         </Route>
         <Route exact path="/reset-password-message">
-          <PasswordResetMessage />
+          <pages.PasswordResetMessage />
         </Route>
         <Route exact path="/posts/new">
-          <NewPost />
+          <pages.NewPost />
         </Route>
         <Route exact path="/posts/:id">
-          <PostPage />
+          <pages.PostPage />
         </Route>
         <Route exact path="/search-posts/search=:search">
-          <SearchedPosts />
+          <pages.SearchedPosts />
         </Route>
         <Route exact path="/users/search=:search">
-          <SearchedUsers />
+          <pages.SearchedUsers />
         </Route>
         <Route exact path="/:username/friends">
-          <UserFriends />
+          <pages.UserFriends />
         </Route>
         <Route exact path="/:username/messages">
-          <Messages />
+          <pages.Messages />
         </Route>
         <Route exact path="/:username/messages/new">
-          <NewMessage />
+          <pages.NewMessage />
         </Route>
         <Route exact path="/:username/messages/to=:otheruser">
-          <Message />
+          <pages.Message />
         </Route>
         <Route exact path="/confirm-email">
-          <ConfirmEmailMessage />
+          <pages.ConfirmEmailMessage />
         </Route>
         <Route exact path="/">
-          <Home />
+          <pages.Home />
         </Route>
         <Route path="/">
-          <NotFound />
+          <pages.NotFound />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import MessageElement from "./MessageElement";
+import "../../css/container.css";
+import "./css/message.css";
 
 function Message() {
   const user = useSelector((state) => state.users.user);
@@ -46,13 +48,16 @@ function Message() {
   }
 
   return (
-    <div>
+    <div className="div-container message-container">
+      <h4>To: @{params.otheruser}</h4>
       {messageElements}
       <form onSubmit={onChatSend}>
-        <input value={message} onChange={(e) => setMessage(e.target.value)} required />
-        <button type="submit" className="btn btn-sm btn-primary">
-          Send
-        </button>
+        <div className="input-group mb-3">
+          <input value={message} onChange={(e) => setMessage(e.target.value)} className="form-control" required />
+          <button type="submit" className="btn btn-primary">
+            Send
+          </button>
+        </div>
       </form>
     </div>
   );

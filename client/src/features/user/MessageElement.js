@@ -6,9 +6,11 @@ function MessageElement({ message }) {
   const user = useSelector((state) => state.users.user);
 
   return (
-    <div>
+    <div className="single-message">
       <p className={user.id === message.user_id ? "blue" : "gray"}>
-        {message.created_at}- {message.message}
+        {message.created_at}
+        <br />
+        {message.message}
       </p>
     </div>
   );
