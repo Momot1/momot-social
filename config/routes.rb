@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   delete "/users/removefriend/:id", to: "users#remove_friend"
+  delete "/users/:id", to: "users#destroy"
   post "/users/addfriend", to: "users#add_friend"
   get "/users/confirmfriend/:id", to: "users#confirm_friend"
   get "/users/posts/:username", to: "users#posts"

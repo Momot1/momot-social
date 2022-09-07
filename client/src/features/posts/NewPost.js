@@ -36,8 +36,7 @@ function NewPost() {
       .then((post) => {
         dispatch(postAdded(post));
         history.push(`/posts/${post.id}`);
-      })
-      .catch((error) => console.log(error));
+      });
   }
 
   return (

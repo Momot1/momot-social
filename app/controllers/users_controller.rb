@@ -22,6 +22,12 @@ class UsersController < ApplicationController
         render json: users, each_serializer: UserSearchSerializer
     end
 
+    def destroy
+        user = User.find(session[:user_id])
+        user.destroy
+        render json: {}
+    end
+
     def confirm_email
         user = User.find_by(confirm_token: params[:confirm_token])
         if user

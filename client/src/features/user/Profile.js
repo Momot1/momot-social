@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import "./css/profile.css";
 
 function Profile() {
   const user = useSelector((state) => state.users.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   if (!user) {
     return (
@@ -14,6 +16,20 @@ function Profile() {
         </div>
       </div>
     );
+  }
+
+  function handleAccountDelete(e) {
+    if (window.confirm("Are you sure you want to delete your account?")) {
+      fetch(`/users/${user.id}`, {
+        method: "DELETE",
+      })
+        .then((resp) => resp.json())
+        .then(() => {
+          window.location.reload();
+          history.push("/");
+          dispatch({ type: "logout" });
+        });
+    }
   }
 
   return (
@@ -31,6 +47,9 @@ function Profile() {
       <p>
         <Link to={`/${user.username}/friends`}>My Friends</Link>
       </p>
+      <button onClick={handleAccountDelete} className="btn btn-secondary">
+        Delete Account
+      </button>
     </div>
   );
 }
