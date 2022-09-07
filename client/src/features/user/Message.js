@@ -12,23 +12,15 @@ function Message() {
 
   const [message, setMessage] = useState("");
 
-  //   console.log(params);
-
   if (!user || !user.chats) {
     return <div>Loading...</div>;
   }
-
-  console.log(user.chats);
 
   const chat = user.chats.find((chat) => {
     if (chat.users) {
       return chat.users.find((user) => user.username === params.otheruser);
     }
   });
-
-  //   if (!chat) {
-  //     return <div>Yo hold up</div>;
-  //   }
 
   const messageElements = chat.messages.map((message) => <MessageElement key={message.id} message={message} />);
 

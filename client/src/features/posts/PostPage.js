@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CommentElement from "./CommentElement";
@@ -13,19 +13,8 @@ function PostPage() {
   const user = useSelector((state) => state.users.user);
   const post = useSelector((state) => state.posts.posts.find((post) => post.id == id.id));
 
-  // const [post, setPost] = useState(null);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
-
-  // const post = posts.find((post) => post.id == id.id);
-
-  // console.log(testPost);
-
-  // useEffect(() => {
-  //   fetch(`/posts/${id.id}`)
-  //     .then((resp) => resp.json())
-  //     .then(setPost);
-  // }, [posts]);
 
   if (!post) {
     return <div>Loading...</div>;
@@ -48,7 +37,6 @@ function PostPage() {
     })
       .then((resp) => resp.json())
       .then((comment) => {
-        // setPost(post);
         dispatch(commentAdded({ id: post.id, comment: comment }));
         setComment("");
       });

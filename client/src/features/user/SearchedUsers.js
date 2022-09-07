@@ -8,8 +8,6 @@ function SearchedUsers() {
   const users = useSelector((state) => state.users.searchedUsers);
   const params = useParams();
 
-  //   console.log(users);
-
   const userElements = users.map((user) => <UserCard key={user.id} user={user} />);
 
   if (userElements.length < 1) {

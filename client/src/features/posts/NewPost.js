@@ -21,17 +21,13 @@ function NewPost() {
 
   function onPostSubmit(e) {
     e.preventDefault();
-    // console.log(e.target.children[2].children[0].children[0].files[0]);
     const image = e.target.children[2].children[0].children[0].files[0];
-
-    console.log(image);
 
     const data = new FormData();
     data.append("title", formData.title);
     data.append("post", formData.post);
     data.append("image", image);
 
-    // console.log(e.target.children[2].children[0].value);
     fetch("/posts", {
       method: "POST",
       body: data,

@@ -38,7 +38,6 @@ const postsSlice = createSlice({
     commentAdded(state, action) {
       let post = state.posts.find((post) => post.id == action.payload.id);
       state.posts.find((post) => post.id == action.payload.id).comments.push(action.payload.comment);
-      // post.comments.push(action.payload.comment);
       post.comments_count = post.comments_count + 1;
     },
     commentRemoved(state, action) {

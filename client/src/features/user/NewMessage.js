@@ -7,8 +7,6 @@ import "./css/message.css";
 function NewMessage() {
   const user = useSelector((state) => state.users.user);
 
-  //   console.log(user.friends.confirmed);
-
   const [search, setSearch] = useState("");
 
   if (!user) {

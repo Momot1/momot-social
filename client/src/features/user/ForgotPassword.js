@@ -23,8 +23,6 @@ function ForgotPassword() {
       },
       body: JSON.stringify({ email: email }),
     });
-    // .then((resp) => resp.json())
-    // .then((resp) => {});
 
     history.push("/reset-password-message");
   }

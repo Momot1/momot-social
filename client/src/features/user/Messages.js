@@ -8,8 +8,6 @@ function Messages() {
   const user = useSelector((state) => state.users.user);
   const history = useHistory();
 
-  console.log(user);
-
   if (!user) {
     return <div>Loading...</div>;
   }

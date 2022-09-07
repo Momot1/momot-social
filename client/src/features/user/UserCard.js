@@ -8,8 +8,6 @@ function UserCard({ user }) {
   const dispatch = useDispatch();
 
   function handleMessageClick() {
-    // console.log(loggedUser.chats.find((chat) => chat.users.find((resultUser) => resultUser.id === user.id)));
-
     if (loggedUser.chats.find((chat) => chat.users.find((resultUser) => resultUser.id === user.id))) {
       history.push(`/${user.username}/messages/to=${user.username}`);
     } else {
@@ -22,7 +20,6 @@ function UserCard({ user }) {
         .then((resp) => {
           dispatch({ type: "update user", payload: resp });
           history.push(`/${resp.username}/messages/to=${user.username}`);
-          //   console.log(resp);
         });
     }
   }
@@ -33,7 +30,6 @@ function UserCard({ user }) {
     })
       .then((resp) => resp.json())
       .then((user) => {
-        // console.log(user);
         dispatch({ type: "update user", payload: user });
       });
   }

@@ -56,7 +56,6 @@ function UserFriends() {
     })
       .then((resp) => resp.json())
       .then((user) => {
-        // console.log(user);
         dispatch({ type: "update user", payload: user });
       });
   }

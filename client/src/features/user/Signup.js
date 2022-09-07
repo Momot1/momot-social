@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./css/signup.css";
 import "../../css/container.css";
 
 function Signup() {
   const history = useHistory();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.users.user);
 
   const [formData, setFormData] = useState({
@@ -43,8 +42,7 @@ function Signup() {
         body: JSON.stringify(formData),
       }).then((resp) => {
         if (resp.ok) {
-          resp.json().then((user) => {
-            // dispatch({ type: "login", payload: user });
+          resp.json().then(() => {
             history.push("/confirm-email");
           });
         } else {
