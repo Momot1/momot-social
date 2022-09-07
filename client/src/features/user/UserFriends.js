@@ -12,7 +12,11 @@ function UserFriends() {
   }
 
   if (user.friends && user.friends.confirmed.length < 1 && user.friends.pending.length < 1) {
-    return <div>No Friends</div>;
+    return (
+      <div className="div-container">
+        <h4>You currently have no friends.</h4>
+      </div>
+    );
   }
 
   const friends = user.friends.confirmed;
