@@ -53,7 +53,7 @@ function UserFriends() {
       .then((resp) => resp.json())
       .then((user) => {
         // console.log(user);
-        dispatch({ type: "update chats", payload: user });
+        dispatch({ type: "update user", payload: user });
       });
   }
 
@@ -61,7 +61,7 @@ function UserFriends() {
     fetch(`/users/confirmfriend/${id}`)
       .then((resp) => resp.json())
       .then((user) => {
-        dispatch({ type: "update chats", payload: user });
+        dispatch({ type: "update user", payload: user });
       });
   }
 

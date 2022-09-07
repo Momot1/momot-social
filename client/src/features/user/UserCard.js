@@ -20,7 +20,7 @@ function UserCard({ user }) {
       })
         .then((resp) => resp.json())
         .then((resp) => {
-          dispatch({ type: "update chats", payload: resp });
+          dispatch({ type: "update user", payload: resp });
           history.push(`/${resp.username}/messages/to=${user.username}`);
           //   console.log(resp);
         });
@@ -34,7 +34,7 @@ function UserCard({ user }) {
       .then((resp) => resp.json())
       .then((user) => {
         // console.log(user);
-        dispatch({ type: "update chats", payload: user });
+        dispatch({ type: "update user", payload: user });
       });
   }
 
@@ -46,7 +46,7 @@ function UserCard({ user }) {
     })
       .then((resp) => resp.json())
       .then((user) => {
-        dispatch({ type: "update chats", payload: user });
+        dispatch({ type: "update user", payload: user });
       });
   }
 

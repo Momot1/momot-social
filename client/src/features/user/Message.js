@@ -42,7 +42,7 @@ function Message() {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        dispatch({ type: "update chats", payload: resp });
+        dispatch({ type: "update user", payload: resp });
         setMessage("");
       });
   }

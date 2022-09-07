@@ -9,7 +9,7 @@ export default function usersReducer(state = initialState, action) {
       return { ...state, user: null };
     case "search":
       return { ...state, searchedUsers: action.payload };
-    case "update chats":
+    case "update user":
       return { ...state, user: action.payload };
 
     default:
